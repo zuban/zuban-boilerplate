@@ -17,6 +17,9 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { useScroll } from 'react-router-scroll';
 import 'sanitize.css/sanitize.css';
 
+// Import bootstrap styles
+import 'bootstrap/dist/css/bootstrap.css';
+
 // Import root app
 import App from 'containers/App';
 

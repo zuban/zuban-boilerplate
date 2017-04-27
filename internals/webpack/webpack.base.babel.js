@@ -4,7 +4,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
-
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = (options) => ({
   entry: options.entry,
   output: Object.assign({ // Compile into js/build.js
@@ -17,6 +17,13 @@ module.exports = (options) => ({
       loader: 'babel-loader',
       exclude: /node_modules/,
       query: options.babelQuery,
+    }, {
+      test: /\.css$/,
+      exclude: /node_modules/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: 'css-loader?modules&localIdentName=[name]___[hash:base64:5]',
+      }),
     }, {
       // Do not transform vendor's CSS with CSS-modules
       // The point is that they remain in global scope.
@@ -75,6 +82,7 @@ module.exports = (options) => ({
       },
     }),
     new webpack.NamedModulesPlugin(),
+    new ExtractTextPlugin('styles.css'),
   ]),
   resolve: {
     modules: ['app', 'node_modules'],
