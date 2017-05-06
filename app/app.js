@@ -18,7 +18,14 @@ import { useScroll } from 'react-router-scroll';
 import 'sanitize.css/sanitize.css';
 
 // Import bootstrap styles
-import 'bootstrap/dist/css/bootstrap.css';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { cyan500 } from 'material-ui/styles/colors';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
+// Our components use react-tap-event-plugin to listen for touch / tap / clickevents.
+// This dependency is temporary and will go away once the official React version is released.
+// Until then, be sure to inject this plugin at the start of your app.
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Import root app
 import App from 'containers/App';
@@ -67,19 +74,34 @@ const rootRoute = {
   childRoutes: createRoutes(store),
 };
 
+const slinkTheme = getMuiTheme({
+  palette: {
+    textColor: cyan500,
+  },
+  appBar: {
+    height: 50,
+  },
+});
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
+
 const render = (messages) => {
   ReactDOM.render(
     <Provider store={store}>
       <LanguageProvider messages={messages}>
-        <Router
-          history={history}
-          routes={rootRoute}
-          render={
-            // Scroll to top when going to a new page, imitating default browser
-            // behaviour
-            applyRouterMiddleware(useScroll())
-          }
-        />
+        <MuiThemeProvider muiTheme={slinkTheme}>
+          <Router
+            history={history}
+            routes={rootRoute}
+            render={
+              // Scroll to top when going to a new page, imitating default browser
+              // behaviour
+              applyRouterMiddleware(useScroll())
+            }
+          />
+        </MuiThemeProvider>
       </LanguageProvider>
     </Provider>,
     document.getElementById('app')
