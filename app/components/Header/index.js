@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-// import styled from 'styled-components';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import styles from './header.css';
 
@@ -31,14 +30,14 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
       <div className={styles.header} >
         <Navbar color="faded" light toggleable>
           <NavbarToggler right onClick={this.toggle} />
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarBrand href="/">EdHunter</NavbarBrand>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+                <NavLink href="/components/">Вход</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
+                <NavLink href="https://github.com/reactstrap/reactstrap">Регистрация</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
