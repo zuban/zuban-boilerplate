@@ -5,21 +5,57 @@
  */
 
 import React from 'react';
-import FlatButton from 'material-ui/FlatButton';
+import IconMenu from 'material-ui/IconMenu';
+import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
+import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
+import MenuItem from 'material-ui/MenuItem';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import RaisedButton from 'material-ui/RaisedButton';
+import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 
 class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 3,
+    };
+  }
+
+  handleChange = (event, index, value) => this.setState({ value });
+
   render() {
     return (
-      <div>
-        <FlatButton label="Default" />
-        <FlatButton label="Primary" primary />
-        <FlatButton label="Secondary" secondary />
-        <FlatButton label="Disabled" disabled />
-        <br />
-        <br />
-        <FlatButton label="Full width" fullWidth />
-      </div>
+      <Toolbar>
+        <ToolbarGroup firstChild>
+          <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+            <MenuItem value={1} primaryText="All Broadcasts" />
+            <MenuItem value={2} primaryText="All Voice" />
+            <MenuItem value={3} primaryText="All Text" />
+            <MenuItem value={4} primaryText="Complete Voice" />
+            <MenuItem value={5} primaryText="Complete Text" />
+            <MenuItem value={6} primaryText="Active Voice" />
+            <MenuItem value={7} primaryText="Active Text" />
+          </DropDownMenu>
+        </ToolbarGroup>
+        <ToolbarGroup>
+          <ToolbarTitle text="Options" />
+          <FontIcon className="muidocs-icon-custom-sort" />
+          <ToolbarSeparator />
+          <RaisedButton label="Create Broadcast" primary />
+          <IconMenu
+            iconButtonElement={
+              <IconButton touch>
+                <NavigationExpandMoreIcon />
+              </IconButton>
+            }
+          >
+            <MenuItem primaryText="Download" />
+            <MenuItem primaryText="More Info" />
+          </IconMenu>
+        </ToolbarGroup>
+      </Toolbar>
     );
   }
 }
