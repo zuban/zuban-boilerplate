@@ -10,12 +10,12 @@ import React from 'react';
 import { Button } from 'react-toolbox/lib/button';
 
 
-// import styles from './landingHeader.css';
+import styles from './landingHeader.css';
 class LandingHeader extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div>
-        <div >
+        <div className={styles.firstBlock}>
           <div>
             <svg
               width="100%" height="700px" viewBox="0 0 1420 914" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -539,15 +539,15 @@ class LandingHeader extends React.Component { // eslint-disable-line react/prefe
             </svg>
           </div>
         </div>
-        <div >
+        <div className={styles.firstBlockText}>
           <h1>Slink App</h1>
           <h3>Websites for you and your projects.</h3>
           <p>Hosted directly from your GitHub repository. Just edit, push, and your changes are live.
           </p>
           <p>Ready? Let’s get started.
           </p>
-          <Button label="LOGIN" />{'  '}
-          <Button label="SIGNUP" />
+          <Button raised label="LOGIN" />{'  '}
+          <Button raised label="SIGNUP" />
         </div>
       </div>
     );

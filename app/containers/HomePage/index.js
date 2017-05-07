@@ -12,13 +12,22 @@
 import React from 'react';
 
 // components
-import Header from '../../components/Header';
+import LandingHeader from '../../components/LandingHeader';
+import Footer from '../../components/Footer';
+import styles from './home.css';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div>
-        <Header />
+        <LandingHeader />
+        <div>
+          <div className={styles.textCenter}>
+            <h2>What is GitHub Pages?</h2>
+          </div>
+
+        </div>
+        <Footer />
       </div>
     );
   }

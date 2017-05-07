@@ -22,21 +22,30 @@ module.exports = (options) => ({
       exclude: /node_modules/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: 'css-loader?modules&localIdentName=[name]___[hash:base64:5]',
+        use: 'css-loader?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]',
       }),
     }, {
-      // Do not transform vendor's CSS with CSS-modules
-      // The point is that they remain in global scope.
-      // Since we require these CSS files in our JS or CSS files,
-      // they will be a part of our compilation either way.
-      // So, no need for ExtractTextPlugin here.
       test: /\.css$/,
       include: /node_modules/,
-      loaders: ['style-loader', 'css-loader'],
-    }, {
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            modules: true,
+            sourceMap: true,
+            importLoaders: 1,
+            localIdentName: '[name]--[local]--[hash:base64:8]',
+          },
+        },
+        'postcss-loader', // has separate config, see postcss.config.js nearby
+      ],
+    },
+    {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
       loader: 'file-loader',
-    }, {
+    },
+    {
       test: /\.(jpg|png|gif)$/,
       loaders: [
         'file-loader',
@@ -53,25 +62,41 @@ module.exports = (options) => ({
           },
         },
       ],
-    }, {
+    },
+    {
       test: /\.html$/,
       loader: 'html-loader',
-    }, {
+    },
+    {
       test: /\.json$/,
       loader: 'json-loader',
-    }, {
+    },
+    {
       test: /\.(mp4|webm)$/,
       loader: 'url-loader',
       query: {
         limit: 10000,
-      },
-    }],
+      }
+        ,
+    },
+    ],
   },
   plugins: options.plugins.concat([
     new webpack.ProvidePlugin({
       // make fetch available
       fetch: 'exports-loader?self.fetch!whatwg-fetch',
     }),
+
+    // new webpack.LoaderOptionsPlugin({
+    //   options: {
+    //     postcss() {
+    //       return [
+    //         require('postcss-cssnext')(),
+    //       ];
+    //     },
+    //   },
+    // }),
+
 
     // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
     // inside your code for any environment checks; UglifyJS will automatically
@@ -97,7 +122,9 @@ module.exports = (options) => ({
       'main',
     ],
   },
+
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
   performance: options.performance || {},
-});
+})
+;

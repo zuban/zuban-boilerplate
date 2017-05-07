@@ -11,8 +11,9 @@ function Footer() {
   return (
     <div className={styles.footer}>
       <p
-        className={styles.footerText}>
-        Hand crafted with love by the slink team
+        className={styles.footerText}
+      >
+        Footer with some links
       </p>
     </div>
   );
