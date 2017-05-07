@@ -8,7 +8,7 @@ import React from 'react';
 // import styled from 'styled-components';
 
 import { Button } from 'react-toolbox/lib/button';
-
+import { Link } from 'react-router';
 
 import styles from './landingHeader.css';
 class LandingHeader extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -20,7 +20,7 @@ class LandingHeader extends React.Component { // eslint-disable-line react/prefe
             <svg
               width="100%" height="700px" viewBox="0 0 1420 914" version="1.1" xmlns="http://www.w3.org/2000/svg"
               data-svgreactloader="[[&quot;http://www.w3.org/2000/svg&quot;,&quot;xlink&quot;,&quot;http://www.w3.org/1999/xlink&quot;]]"
-              xlink="http://www.w3.org/1999/xlink"
+
             >
               <defs></defs>
               <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -546,7 +546,9 @@ class LandingHeader extends React.Component { // eslint-disable-line react/prefe
           </p>
           <p>Ready? Let’s get started.
           </p>
-          <Button raised label="LOGIN" />{'  '}
+          <Link to={'/login'}>
+            <Button raised label="LOGIN" />
+          </Link>{'  '}
           <Button raised label="SIGNUP" />
         </div>
       </div>

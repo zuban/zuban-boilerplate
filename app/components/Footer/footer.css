@@ -1,5 +1,5 @@
 .footer {
-  position: static;
+  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -8,8 +8,8 @@
 }
 
 .footerText {
+  padding-top: 8px;
   margin: 0px auto;
-  padding: 0px;
   color: rgba(255, 255, 255, 0.54);
   text-align: center;
 }
