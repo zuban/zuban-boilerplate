@@ -2,4 +2,11 @@
   max-width: 350px;
   margin: 0 auto;
   margin-top: 20px;
+  padding: 30px;
 }
+
+
+.rememberHeader {
+  font-weight: normal;
+}
+

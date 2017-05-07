@@ -11,6 +11,7 @@ import Input from 'react-toolbox/lib/input';
 import Button from 'react-toolbox/lib/button';
 import styles from './login.css';
 import { Link } from 'react-router';
+import { Card } from 'react-toolbox/lib/card';
 const validate = (values) => {
   const errors = {};
   const requiredFields = ['username', 'email'];
@@ -39,20 +40,22 @@ class LoginForm extends React.Component { // eslint-disable-line react/prefer-st
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
     return (
-      <form className={styles.loginForm} onSubmit={handleSubmit}>
-        <div>
-          <Field name="username" component={renderTextField} label="Username" />
-        </div>
-        <div>
-          <Field name="email" component={renderTextField} label="Email" />
-        </div>
-        <div>
-          <Button type="button" label="Submit" raised primary disabled={pristine || submitting} />{' '}
-          <Button type="button" label="Clear Values" raised primary disabled={pristine || submitting} onClick={reset} />
-        </div>
-        <p> Want to <Link to={'/signup'}>signup?</Link></p>
-        <p><Link to={'/remember'}>Forgotten</Link> your password?</p>
-      </form >
+      <Card className={styles.loginForm}>
+        <h1 className={styles.loginHeader}>Login to Slink!</h1>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <Field name="username" component={renderTextField} label="Username" />
+          </div>
+          <div>
+            <Field name="email" component={renderTextField} label="Email" />
+          </div>
+          <div>
+            <Button type="button" label="Submit" raised primary disabled={pristine || submitting} />{' '}
+          </div>
+          <p> Want to <Link to={'/signup'}>signup?</Link></p>
+          <p><Link to={'/remember'}>Forgotten</Link> your password?</p>
+        </form >
+      </Card>
     );
   }
 }

@@ -10,7 +10,7 @@ import { Field, reduxForm } from 'redux-form/immutable';
 import Input from 'react-toolbox/lib/input';
 import Button from 'react-toolbox/lib/button';
 import styles from './remember.css';
-import { Link } from 'react-router';
+import { Card } from 'react-toolbox/lib/card';
 const validate = (values) => {
   const errors = {};
   const requiredFields = ['username', 'email'];
@@ -39,14 +39,17 @@ class RememberForm extends React.Component { // eslint-disable-line react/prefer
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
     return (
-      <form className={styles.rememberForm} onSubmit={handleSubmit}>
-        <div>
-          <Field name="email" component={renderTextField} label="Email" />
-        </div>
-        <div>
-          <Button type="button" label="Send instructions" raised primary disabled={pristine || submitting} />{' '}
-        </div>
-      </form >
+      <Card className={styles.rememberForm} >
+        <h1 className={styles.rememberHeader}>Forgotten your password? </h1>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <Field name="email" component={renderTextField} label="Email" />
+          </div>
+          <div>
+            <Button type="button" label="Send instructions" raised primary disabled={pristine || submitting} />{' '}
+          </div>
+        </form >
+      </Card>
     );
   }
 }

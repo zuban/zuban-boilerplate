@@ -9,6 +9,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form/immutable';
 import Input from 'react-toolbox/lib/input';
 import Button from 'react-toolbox/lib/button';
+import { Card } from 'react-toolbox/lib/card';
 import styles from './signup.css';
 import { Link } from 'react-router';
 const validate = (values) => {
@@ -39,14 +40,26 @@ class SignupForm extends React.Component { // eslint-disable-line react/prefer-s
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
     return (
-      <form className={styles.signupForm} onSubmit={handleSubmit}>
-        <div>
-          <Field name="email" component={renderTextField} label="Email" />
-        </div>
-        <div>
-          <Button type="button" label="Send instructions" raised primary disabled={pristine || submitting} />{' '}
-        </div>
-      </form >
+      <Card className={styles.signupForm} >
+        <h1 className={styles.signupHeader}>Signup to Slink!</h1>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <Field name="name" component={renderTextField} label="Name" />
+          </div>
+          <div>
+            <Field name="about" component={renderTextField} label="About" />
+          </div>
+          <div>
+            <Field name="email" component={renderTextField} label="Email" />
+          </div>
+          <div>
+            <Field name="password" component={renderTextField} label="Password" />
+          </div>
+          <div>
+            <Button type="button" label="Signup" raised primary disabled={pristine || submitting} />{' '}
+          </div>
+        </form >
+      </Card>
     );
   }
 }
