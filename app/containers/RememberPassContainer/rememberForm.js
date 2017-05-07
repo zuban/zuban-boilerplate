@@ -9,7 +9,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form/immutable';
 import Input from 'react-toolbox/lib/input';
 import Button from 'react-toolbox/lib/button';
-import styles from './login.css';
+import styles from './remember.css';
 import { Link } from 'react-router';
 const validate = (values) => {
   const errors = {};
@@ -35,31 +35,25 @@ const renderTextField = (props) => (
   />
 );
 
-class LoginForm extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class RememberForm extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
     return (
-      <form className={styles.loginForm} onSubmit={handleSubmit}>
-        <div>
-          <Field name="username" component={renderTextField} label="Username" />
-        </div>
+      <form className={styles.rememberForm} onSubmit={handleSubmit}>
         <div>
           <Field name="email" component={renderTextField} label="Email" />
         </div>
         <div>
-          <Button type="button" label="Submit" raised primary disabled={pristine || submitting} />{' '}
-          <Button type="button" label="Clear Values" raised primary disabled={pristine || submitting} onClick={reset} />
+          <Button type="button" label="Send instructions" raised primary disabled={pristine || submitting} />{' '}
         </div>
-        <p> Want to <Link to={'/signup'}>signup?</Link></p>
-        <p><Link to={'/remember'}>Forgotten</Link> your password?</p>
       </form >
     );
   }
 }
 
-LoginForm.propTypes = {};
+RememberForm.propTypes = {};
 
 export default reduxForm({
-  form: 'loginForm',  // a unique identifier for this form
+  form: 'rememberForm',  // a unique identifier for this form
   validate,
-})(LoginForm);
+})(RememberForm);

@@ -549,7 +549,9 @@ class LandingHeader extends React.Component { // eslint-disable-line react/prefe
           <Link to={'/login'}>
             <Button raised label="LOGIN" />
           </Link>{'  '}
+          <Link to={'/signup'}>
           <Button raised label="SIGNUP" />
+          </Link>
         </div>
       </div>
     );

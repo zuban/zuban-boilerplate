@@ -54,6 +54,46 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      path: '/signup',
+      name: 'signupContainer',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/SignupContainer/reducer'),
+          import('containers/SignupContainer/sagas'),
+          import('containers/SignupContainer'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('signupContainer', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
+      path: '/remember',
+      name: 'rememberPassContainer',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/RememberPassContainer/reducer'),
+          import('containers/RememberPassContainer/sagas'),
+          import('containers/RememberPassContainer'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('rememberPassContainer', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
