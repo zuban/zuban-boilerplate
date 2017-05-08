@@ -8,13 +8,7 @@ import React from 'react';
 import styles from './footer.css';
 function Footer() {
   return (
-    <div className={styles.footer}>
-      <p
-        className={styles.footerText}
-      >
-       Made by slink team 2017
-      </p>
-    </div>
+    null
   );
 }
 
