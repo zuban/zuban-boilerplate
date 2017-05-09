@@ -5,11 +5,11 @@
  */
 
 import {
-  DEFAULT_ACTION,
+  SENT_LOGIN_DATA,
 } from './constants';
 
-export function defaultAction() {
-  return {
-    type: DEFAULT_ACTION,
-  };
-}
+export const login = (username, password) => ({
+  type: SENT_LOGIN_DATA,
+  username,
+  password,
+});

@@ -55,7 +55,7 @@ class BaseService {
       if (!error) {
 // eslint-disable-next-line camelcase
         context.token = `${token_type} ${access_token}`;
-        setCookie('access-token', _this.token);
+        setCookie('access-token', context.token);
         context.apiClient = new RestApiClient({
           entryUrl: context.entryUrl,
           requestHeaders: context.requestHeaders,
@@ -102,9 +102,15 @@ class BaseService {
 
   login(login, password) {
     setCookie('username', login);
+
+    if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
+      return new Promise((resolve, reject) => {
+        this.processLoginResponse(null, { body: { access_token: 'fdd44498-ea99-4d7f-b953-e5d977194e37', token_type: 'bearer', refresh_token: '0c16ace4-ec7a-42cb-b44a-20bbc8e8fad8', expires_in: 25355, scope: 'openid' } }).then(resolve, reject);
+      });
+    }
     return new Promise((resolve, reject) => {
       this.apiClient
-        .post(`oauth/uaa/oauth/token?grant_type=password&client_id=jodform&client_secret=jodform_password&username=${login}&password=${password}`)
+        .post(`hw/oauth/token?grant_type=password&client_id=acme&client_secret=acmesecret&username=${login}&password=${password}`)
         .end((error, response) => {
           this.processLoginResponse(error, response).then(resolve, reject);
         });
@@ -212,15 +218,15 @@ class BaseService {
     });
   }
 
-  static checkToken() {
+  checkToken() {
     return getCookie('access-token');
   }
 
-  static getCurrentUser() {
+  getCurrentUser() {
     return getCookie('username');
   }
 
-  static logout() {
+  logout() {
     deleteCookie('access-token');
     deleteCookie('username');
   }

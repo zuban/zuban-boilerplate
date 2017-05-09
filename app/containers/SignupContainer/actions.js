@@ -5,11 +5,10 @@
  */
 
 import {
-  DEFAULT_ACTION,
+  SENT_SIGNUP_DATA,
 } from './constants';
 
-export function defaultAction() {
-  return {
-    type: DEFAULT_ACTION,
-  };
-}
+export const signUp = (fields) => ({
+  type: SENT_SIGNUP_DATA,
+  fields,
+})

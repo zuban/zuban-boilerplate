@@ -6,15 +6,30 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  SENT_SIGNUP_DATA,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAIL,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  loading: false,
+  signupErrorMessage: null,
+});
 
 function signupContainerReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case SENT_SIGNUP_DATA:
+      return state
+        .set('loading', false)
+        .set('signupErrorMessage', null)
+    case SIGNUP_SUCCESS:
+      return state
+        .set('loading', false)
+        .set('signupErrorMessage', null)
+    case SIGNUP_FAIL:
+      return state
+        .set('loading', false)
+        .set('signupErrorMessage', action.error)
     default:
       return state;
   }

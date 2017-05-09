@@ -94,6 +94,7 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      onEnter: injectRightsChecker,
       path: '/home',
       name: 'filesContainer',
       getComponent(nextState, cb) {

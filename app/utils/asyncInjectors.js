@@ -70,7 +70,6 @@ export function injectAsyncSagas(store, isValid) {
  */
 export function injectRightsChecker(store) {
   return (nextState, replace) => {
-    // console.log(store);
     if (!store.getState().getIn(['global', 'isAuthenticated'])) {
       replace({
         pathname: '/login',

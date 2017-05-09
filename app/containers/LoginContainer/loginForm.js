@@ -11,19 +11,6 @@ import Input from 'react-toolbox/lib/input';
 import Button from 'react-toolbox/lib/button';
 import { Link } from 'react-router';
 
-const validate = (values) => {
-  const errors = {};
-  const requiredFields = ['username', 'email'];
-  requiredFields.forEach((field) => {
-    if (!values[field]) {
-      errors[field] = 'Required';
-    }
-  });
-  if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
-  }
-  return errors;
-};
 
 const renderTextField = (props) => (
   <Input
@@ -47,7 +34,7 @@ class LoginForm extends React.Component { // eslint-disable-line react/prefer-st
           <Field name="email" component={renderTextField} label="Email" />
         </div>
         <div>
-          <Button type="button" label="Sign in" raised primary disabled={pristine || submitting} />{' '}
+          <Button type='submit' label="Sign in" raised primary disabled={pristine || submitting} />{' '}
         </div>
         <p style={{color: 'rgb(120, 144, 156)'}}>Don't have an account? <Link style={{color: 'rgb(120, 144, 156)'}} to={'/signup'}>Sign up</Link></p>
         <p style={{color: 'rgb(120, 144, 156)'}}><Link style={{color: 'rgb(120, 144, 156)'}} to={'/remember'}>Forgot</Link> your password?</p>
@@ -61,5 +48,4 @@ LoginForm.propTypes = {};
 
 export default reduxForm({
   form: 'loginForm',  // a unique identifier for this form
-  validate,
 })(LoginForm);
