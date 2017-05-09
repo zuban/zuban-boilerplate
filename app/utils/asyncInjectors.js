@@ -66,6 +66,21 @@ export function injectAsyncSagas(store, isValid) {
 }
 
 /**
+ * Helper for check auth token
+ */
+export function injectRightsChecker(store) {
+  return (nextState, replace) => {
+    // console.log(store);
+    if (!store.getState().getIn(['global', 'isAuthenticated'])) {
+      replace({
+        pathname: '/login',
+        state: { nextPathname: nextState.location.pathname },
+      });
+    }
+  };
+}
+
+/**
  * Helper for creating injectors
  */
 export function getAsyncInjectors(store) {
@@ -74,5 +89,6 @@ export function getAsyncInjectors(store) {
   return {
     injectReducer: injectAsyncReducer(store, true),
     injectSagas: injectAsyncSagas(store, true),
+    injectRightsChecker: injectRightsChecker(store),
   };
 }
