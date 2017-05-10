@@ -14,13 +14,15 @@ import { List, ListSubHeader } from 'react-toolbox/lib/list';
 import { ListItem } from 'react-toolbox/lib/list';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import { Button } from 'react-toolbox/lib/button';
+import Input from 'react-toolbox/lib/input';
+import { IconMenu, MenuItem, MenuDivider } from 'react-toolbox/lib/menu';
 import styles from './styles.css';
 import slinkIcon from './webpack.svg';
 
 import AppBar from 'react-toolbox/lib/app_bar';
 import Navigation from 'react-toolbox/lib/navigation';
 // import Link from 'react-toolbox/lib/link';
-import {Link} from 'react-router'
+import { Link } from 'react-router';
 
 export class FilesContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -152,9 +154,18 @@ export class FilesContainer extends React.Component { // eslint-disable-line rea
             className="col-xs-12 col-sm-9 col-md-10 col-lg-10"
           >
             <AppBar title="Documents view">
-              <Navigation type="horizontal">
-                <Link href="http://" label="Inbox" icon="inbox" />
-                <Link href="http://" active label="Profile" icon="person" />
+              <Input type="text" label="Name" name="name"maxLength={16} />
+              <Navigation style={{ color: 'rgb(255, 255, 255)' }}type="horizontal" >
+                <IconMenu theme={styles} icon="more_vert" position="topRight" menuRipple>
+                  <MenuItem value="profile" icon="person" caption="Profile" />
+                  <MenuItem value="help" icon="help" caption="Help" />
+                  <MenuItem value="about" icon="about" caption="About" />
+                  <MenuDivider />
+                  <MenuItem value="signout" icon="exit_to_app" caption="Logout" />
+                </IconMenu>
+                <Link to={'/upload'}>
+                  <Button icon="file_upload" label="Upload" raised />
+                </Link>
               </Navigation>
             </AppBar>
             <div style={{ marginTop: '0px' }} className="row">

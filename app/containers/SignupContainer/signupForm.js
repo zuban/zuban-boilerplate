@@ -6,7 +6,7 @@
 
 import React from 'react';
 // import styled from 'styled-components';
-import {Field, reduxForm} from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form/immutable';
 import Input from 'react-toolbox/lib/input';
 import Button from 'react-toolbox/lib/button';
 
@@ -28,27 +28,36 @@ const renderReqiuredTextField = (props) => (
     {...props.input}
   />
 );
+const renderPasswordField = (props) => (
+  <Input
+    type="password"
+    label={props.label}
+    required
+    error={props.touched && props.error}
+    {...props.input}
+  />
+);
 
 class SignupForm extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const {handleSubmit, pristine, reset, submitting} = this.props;
+    const { handleSubmit, pristine, reset, submitting } = this.props;
     return (
 
       <form onSubmit={handleSubmit}>
         <div>
-          <Field name="name" component={renderTextField} label="Name"/>
+          <Field name="name" component={renderTextField} label="Name" />
         </div>
         <div>
-          <Field name="about" component={renderTextField} label="About"/>
+          <Field name="about" component={renderTextField} label="About" />
         </div>
         <div>
-          <Field name="email" component={renderReqiuredTextField} label="Email"/>
+          <Field name="email" component={renderReqiuredTextField} label="Email" />
         </div>
         <div>
-          <Field name="password" component={renderReqiuredTextField} label="Password"/>
+          <Field name="password" component={renderPasswordField} label="Password" />
         </div>
         <div>
-          <Button type="submit" label="Signup" raised primary disabled={pristine || submitting}/>{' '}
+          <Button type="submit" label="Signup" raised primary disabled={pristine || submitting} />{' '}
         </div>
       </form >
 

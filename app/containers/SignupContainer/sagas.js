@@ -27,16 +27,17 @@ export function* signUpSaga() {
 function* signUpUser(action) {
   try {
     yield call(service.singup.bind(service),
-      action.fields
+      action.email,
+      action.password
     );
     yield call(service.login.bind(service),
-      action.fields.get('email'),
-      action.fields.get('password')
+      action.email,
+      action.password
     );
     yield put({ type: LOGIN_SUCCESS });
     yield put({
       type: SET_AUTHENTICATED,
-      username: action.fields.get('email'),
+      username: action.email,
     });
     browserHistory.push('/home');
   } catch (error) {

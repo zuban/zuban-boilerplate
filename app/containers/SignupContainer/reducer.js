@@ -21,15 +21,15 @@ function signupContainerReducer(state = initialState, action) {
     case SENT_SIGNUP_DATA:
       return state
         .set('loading', false)
-        .set('signupErrorMessage', null)
+        .set('signupErrorMessage', null);
     case SIGNUP_SUCCESS:
       return state
         .set('loading', false)
-        .set('signupErrorMessage', null)
+        .set('signupErrorMessage', null);
     case SIGNUP_FAIL:
       return state
         .set('loading', false)
-        .set('signupErrorMessage', action.error)
+        .set('signupErrorMessage', action.error);
     default:
       return state;
   }

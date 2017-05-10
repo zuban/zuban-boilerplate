@@ -66,7 +66,7 @@ export class LoginContainer extends React.Component { // eslint-disable-line rea
   }
 
   render() {
-    const { loginErrorMessage } = this.props.loginContainer;
+    const { loginErrorMessage, infoMessage } = this.props.loginContainer;
 
     return (
       <div>

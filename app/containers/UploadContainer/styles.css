@@ -1,0 +1,39 @@
+.uploadZone {
+  padding: 50px;
+  margin: 50px auto;
+  max-width: 700px;
+  height: 200px;
+  border-width: 2px;
+  border-color: rgb(102, 102, 102);
+  border-style: dashed;
+  border-radius: 5px;
+}
+
+.uploadActiveZone {
+  padding: 50px;
+  margin: 50px auto;
+  max-width: 700px;
+  height: 200px;
+  border-width: 2px;
+  border-color: rgb(48, 63, 159);
+  background-color: rgb(247, 249, 250);
+  border-style: dashed;
+  border-radius: 5px;
+}
+
+.uploadRejectZone {
+  padding: 50px;
+  margin: 50px auto;
+  max-width: 700px;
+  height: 200px;
+  border-width: 2px;
+  border-color: rgb(241, 0, 17);
+  border-style: dashed;
+  border-radius: 5px;
+}
+
+.linear {
+  display: block;
+  margin: 50px auto;
+  max-width: 700px;
+}

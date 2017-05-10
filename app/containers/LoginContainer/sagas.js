@@ -1,6 +1,6 @@
 import { take, call, cancel, put, takeLatest } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
-import { LOCATION_CHANGE } from 'react-router-redux'
+import { LOCATION_CHANGE } from 'react-router-redux';
 import {
   SENT_LOGIN_DATA,
   LOGIN_SUCCESS,
@@ -23,7 +23,7 @@ export function* loginSaga() {
 function* loginUser(action) {
   try {
     yield call(service.login.bind(service),
-      action.login,
+      action.username,
       action.password
     );
     yield put({
@@ -31,7 +31,7 @@ function* loginUser(action) {
     });
     yield put({
       type: SET_AUTHENTICATED,
-      username: action.login,
+      username: action.username,
     });
     browserHistory.push('/home');
   } catch (error) {

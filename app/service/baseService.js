@@ -137,6 +137,16 @@ class BaseService {
     });
   }
 
+  uploadSVG(file) {
+    return new Promise((resolve, reject) => {
+      this.apiClient
+        .postUpload('hw/services/files/svg', file)
+        .end((error, response) => {
+          this.processResponse(error, response).then(resolve, reject);
+        });
+    });
+  }
+
   getForms() {
     return new Promise((resolve, reject) => {
       const request = this.apiClient

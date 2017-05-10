@@ -62,6 +62,22 @@ class RestApiClient {
   }
 
   /**
+   * Выполняет POST запрос к API
+   *
+   * @method get
+   * @param {String} url - URL ресурса
+   * @param {Object} [data] - body запроса
+   * @param {Object} [query] - Query параметры
+   * @return {Request}
+   */
+  postUpload(url, data = {}, query = {}) {
+    return request.post(`${this.entryUrl}${url}`)
+      .set({ Authorization: this.token })
+      .query(query)
+      .send(data);
+  }
+
+  /**
    * Выполняет PUT запрос к API
    *
    * @method get

@@ -21,15 +21,15 @@ function loginContainerReducer(state = initialState, action) {
     case SENT_LOGIN_DATA:
       return state
         .set('loading', true)
-        .set('loginErrorMessage', null)
+        .set('loginErrorMessage', null);
     case LOGIN_SUCCESS:
       return state
         .set('loading', false)
-        .set('loginErrorMessage', null)
+        .set('loginErrorMessage', null);
     case LOGIN_FAIL:
       return state
         .set('loading', false)
-        .set('loginErrorMessage', action.error)
+        .set('loginErrorMessage', action.error);
     default:
       return state;
   }

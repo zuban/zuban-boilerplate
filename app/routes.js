@@ -115,6 +115,27 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      onEnter: injectRightsChecker,
+      path: '/upload',
+      name: 'uploadContainer',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/UploadContainer/reducer'),
+          import('containers/UploadContainer/sagas'),
+          import('containers/UploadContainer'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('uploadContainer', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
