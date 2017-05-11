@@ -120,7 +120,7 @@ class BaseService {
   singup(fields) {
     return new Promise((resolve, reject) => {
       this.apiClient
-        .post('oauth/uaa/user', fields, {})
+        .post('hw/services/user', fields, {})
         .end((error, response) => {
           this.processResponse(error, response).then(resolve, reject);
         });

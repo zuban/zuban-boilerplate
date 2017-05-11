@@ -1,0 +1,25 @@
+.item {
+  min-height: 22px;
+}
+
+.itemAction {
+  margin: 4px 0px 4px 8px;
+}
+
+.itemText {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.itemAction > [data-react-toolbox='font-icon'] {
+  font-size: 22px;
+}
+
+.left :last-child > [data-react-toolbox='font-icon']{
+  margin-right: 15px;
+}
+
+
+.neutral {
+  color: rgb(255, 255, 255);
+}

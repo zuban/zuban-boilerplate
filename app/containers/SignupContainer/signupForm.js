@@ -45,7 +45,7 @@ class SignupForm extends React.Component { // eslint-disable-line react/prefer-s
 
       <form onSubmit={handleSubmit}>
         <div>
-          <Field name="name" component={renderTextField} label="Name" />
+          <Field name="username" component={renderReqiuredTextField} label="Name" />
         </div>
         <div>
           <Field name="about" component={renderTextField} label="About" />

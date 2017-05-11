@@ -26,9 +26,11 @@ export function* signUpSaga() {
 
 function* signUpUser(action) {
   try {
-    yield call(service.singup.bind(service),
-      action.email,
-      action.password
+    yield call(service.singup.bind(service), {
+      email: action.email,
+      username: action.username,
+      password: action.password,
+    }
     );
     yield call(service.login.bind(service),
       action.email,

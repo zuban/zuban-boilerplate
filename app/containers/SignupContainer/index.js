@@ -21,7 +21,7 @@ import { signUp } from './actions';
 export class SignupContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   onSubmitSignUp(formArgs) {
-    this.props.signUp(formArgs.get('email'), formArgs.get('password'));
+    this.props.signUp(formArgs.get('email'), formArgs.get('username'), formArgs.get('password'));
   }
 
   render() {
