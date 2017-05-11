@@ -5,11 +5,9 @@
  */
 
 import {
-  DEFAULT_ACTION,
+  INIT_DOCUMENTS,
 } from './constants';
 
-export function defaultAction() {
-  return {
-    type: DEFAULT_ACTION,
-  };
-}
+export const init = () => ({
+  type: INIT_DOCUMENTS,
+});

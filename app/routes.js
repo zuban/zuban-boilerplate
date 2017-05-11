@@ -138,10 +138,22 @@ export default function createRoutes(store) {
     }, {
       path: '/demo',
       name: 'demoContainer',
-      getComponent(location, cb) {
-        import('containers/DemoContainer')
-          .then(loadModule(cb))
-          .catch(errorLoading);
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/DemoContainer/reducer'),
+          import('containers/DemoContainer/sagas'),
+          import('containers/DemoContainer'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('demoContainer', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
       },
     }, {
       path: '*',

@@ -1,7 +1,8 @@
 /*
  *
- * DemoContainer constants
+ * LoginContainer constants
  *
  */
-
-export const DEFAULT_ACTION = 'app/DemoContainer/DEFAULT_ACTION';
+export const SENT_LOGIN_DATA = 'slink/DemoContainer/SENT_LOGIN_DATA';
+export const LOGIN_SUCCESS = 'slink/DemoContainer/LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'slink/DemoContainer/LOGIN_FAIL';

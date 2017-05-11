@@ -16,7 +16,7 @@ import Tags from '../../components/Tags';
 import Toolbar from '../../components/Toolbar';
 import Documents from '../../components/Documents';
 
-
+import { init } from './actions';
 export class FilesContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   componentWillMount() {
@@ -24,6 +24,7 @@ export class FilesContainer extends React.Component { // eslint-disable-line rea
   }
 
   render() {
+    const { documentsFetching, documents } = this.props.filesContainer;
     return (
       <div>
         <Helmet
@@ -39,7 +40,10 @@ export class FilesContainer extends React.Component { // eslint-disable-line rea
             className="col-xs-12 col-sm-9 col-md-10 col-lg-10"
           >
             <Toolbar />
-            <Documents />
+            <Documents
+              documentsFetching={documentsFetching}
+              documents={documents}
+            />
           </div>
         </div>
         <Footer />
@@ -49,17 +53,13 @@ export class FilesContainer extends React.Component { // eslint-disable-line rea
 }
 
 FilesContainer.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  init: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  FilesContainer: makeSelectFilesContainer(),
+  filesContainer: makeSelectFilesContainer(),
 });
-
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
-
+const mapDispatchToProps = {
+  init,
+};
 export default connect(mapStateToProps, mapDispatchToProps)(FilesContainer);
