@@ -20,6 +20,10 @@ injectGlobal`
     min-height: 100%;
     min-width: 100%;
   }
+  
+  .react-tagsinput-input {
+      display: none;
+  }
   /*! sanitize.css v4.1.0 | CC0 License | github.com/jonathantneal/sanitize.css */
 
   /* Display definitions
@@ -568,8 +572,6 @@ injectGlobal`
     flex-direction: row;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin-right: -0.5rem;
-    margin-left: -0.5rem;
   }
   
   .row.reverse {

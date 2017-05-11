@@ -155,6 +155,274 @@ class BaseService {
     });
   }
 
+  getTags (tags) {
+
+    if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
+      return new Promise((resolve, reject) => {
+        this.processResponse(null, {
+          body: [{
+            "id": 408,
+            "value": "meeting",
+            "title": "meeting",
+            "description": "",
+            "fileIds": [338, 394, 347, 316, 318, 431],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 409,
+            "value": "prep",
+            "title": "prep",
+            "description": "",
+            "fileIds": [316],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 411,
+            "value": "prj_tv",
+            "title": "prj_tv",
+            "description": "",
+            "fileIds": [338],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 412,
+            "value": "book_ev_2017",
+            "title": "book_ev_2017",
+            "description": "",
+            "fileIds": [384, 321, 386, 323, 388, 389, 326, 390, 327, 394, 331, 333, 336, 400, 337, 338, 341, 344, 347, 349, 350, 351, 358, 361, 362, 363, 364, 365, 367, 368, 369, 370, 371, 372, 373, 310, 374, 375, 376, 377, 378, 379, 316, 380, 318, 382],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 410,
+            "value": "prj_ecn",
+            "title": "prj_ecn",
+            "description": "",
+            "fileIds": [338, 347, 316],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 413,
+            "value": "book_ev_pad17",
+            "title": "book_ev_pad17",
+            "description": "",
+            "fileIds": [385],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 414,
+            "value": "field_work",
+            "title": "field_work",
+            "description": "",
+            "fileIds": [358],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 415,
+            "value": "diagram",
+            "title": "diagram",
+            "description": "",
+            "fileIds": [368, 370, 323, 371, 372, 376, 377, 364, 333, 318, 367],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 416,
+            "value": "mockup",
+            "title": "mockup",
+            "description": "",
+            "fileIds": [321, 386, 389, 390, 376, 394, 378, 363, 365, 431],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 417,
+            "value": "architecture",
+            "title": "architecture",
+            "description": "",
+            "fileIds": [385, 371, 372],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 418,
+            "value": "pen_trial",
+            "title": "pen_trial",
+            "description": "",
+            "fileIds": [385],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 404,
+            "value": "todo",
+            "title": "todo",
+            "description": "todo",
+            "fileIds": [385, 388, 310, 382, 431],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 405,
+            "value": "slink",
+            "title": "slink",
+            "description": "",
+            "fileIds": [321, 386, 323, 389, 390, 327, 394, 331, 460, 333, 336, 341, 351, 358, 361, 362, 363, 364, 365, 367, 368, 369, 370, 371, 372, 374, 375, 376, 377, 378, 318],
+            "users": [{"id": 39, "email": "aykuzmin@gmail.com", "userName": "aykuzmin"}],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 406,
+            "value": "dev",
+            "title": "dev",
+            "description": "",
+            "fileIds": [341],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 407,
+            "value": "idea",
+            "title": "idea",
+            "description": "",
+            "fileIds": [323, 358, 327, 361, 362, 331, 364, 365, 367, 431, 368, 336, 374, 375, 377, 351],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 419,
+            "value": "yc",
+            "title": "yc",
+            "description": "",
+            "fileIds": [388],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 420,
+            "value": "sketch",
+            "title": "sketch",
+            "description": "",
+            "fileIds": [336, 369],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 421,
+            "value": "seminar",
+            "title": "seminar",
+            "description": "",
+            "fileIds": [347],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 422,
+            "value": "mobile",
+            "title": "mobile",
+            "description": "",
+            "fileIds": [390, 376, 363],
+            "users": [{"id": 289, "email": "zuban@", "userName": "zuban@"}],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 213,
+            "value": "geo",
+            "title": "geo",
+            "description": null,
+            "fileIds": [212],
+            "users": [{"id": 39, "email": "aykuzmin@gmail.com", "userName": "aykuzmin"}, {
+              "id": 309,
+              "email": "demo@",
+              "userName": "demo"
+            }],
+            "owner": {"id": 78, "email": "evgeniy@meyke.info", "userName": "evgeniy"}
+          }, {
+            "id": 223,
+            "value": "map",
+            "title": "map",
+            "description": null,
+            "fileIds": [220],
+            "users": [{"id": 309, "email": "demo@", "userName": "demo"}, {
+              "id": 39,
+              "email": "aykuzmin@gmail.com",
+              "userName": "aykuzmin"
+            }],
+            "owner": {"id": 78, "email": "evgeniy@meyke.info", "userName": "evgeniy"}
+          }, {
+            "id": 435,
+            "value": "HW",
+            "title": null,
+            "description": null,
+            "fileIds": [],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 461,
+            "value": "ecn",
+            "title": null,
+            "description": null,
+            "fileIds": [460],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 462,
+            "value": "ecdb",
+            "title": null,
+            "description": null,
+            "fileIds": [460],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 463,
+            "value": "TM",
+            "title": null,
+            "description": null,
+            "fileIds": [460],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 464,
+            "value": "ec",
+            "title": null,
+            "description": null,
+            "fileIds": [460, 431],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 432,
+            "value": "e",
+            "title": "e",
+            "description": null,
+            "fileIds": [],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 434,
+            "value": "MEETING",
+            "title": "MEETING",
+            "description": null,
+            "fileIds": [],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }, {
+            "id": 485,
+            "value": "check",
+            "title": "check",
+            "description": "",
+            "fileIds": [],
+            "users": [],
+            "owner": {"id": 309, "email": "demo@", "userName": "demo"}
+          }]
+        }).then(resolve, reject);
+      });
+    }
+    if (tags === '') {
+      return new Promise((resolve, reject) => {
+        this.apiClient
+          .get('hw/services/hashTag')
+          .end((error, response) => {
+            this.processResponse(error, response).then(resolve, reject)
+          })
+      })
+    } else {
+      return new Promise((resolve, reject) => {
+        this.apiClient
+          .get('hw/services/hashTag?relatedTagIds=' + tags)
+          .end((error, response) => {
+            this.processResponse(error, response).then(resolve, reject)
+          })
+      })
+    }
+  }
+
   uploadSVG(file) {
     return new Promise((resolve, reject) => {
       this.apiClient

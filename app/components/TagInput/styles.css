@@ -1,0 +1,25 @@
+.react-tagsinput-tag {
+  display: inline-block;
+  padding: .3em .4em;
+  font-size: 100%;
+  font-weight: 700;
+  line-height: 1;
+  color: #2895f1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  padding-right: .6em;
+  padding-left: .6em;
+  border-radius: 10rem;
+  background-color: #ffffff;
+  border: none;
+  font-family: inherit;
+}
+
+.reactTagsinput {
+  margin: 10px
+}
+
+.react-tagsinput--focused {
+  border-color: #2895f1
+}

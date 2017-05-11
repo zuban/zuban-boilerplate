@@ -1,20 +1,21 @@
 /**
-*
-* Tags
-*
-*/
+ *
+ * Tags
+ *
+ */
 
 import React from 'react';
-// import styled from 'styled-components';
-import { List, ListSubHeader } from 'react-toolbox/lib/list';
-import { ListItem } from 'react-toolbox/lib/list';
+import { List, ListSubHeader, ListItem } from 'react-toolbox/lib/list';
+import ProgressBar from 'react-toolbox/lib/progress_bar';
 import styles from './styles.css';
 import slinkIcon from './webpack.svg';
+
 class Tags extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
+    const { tagsFetching, tags } = this.props;
     return (
       <div
-        style={{ padding: '0px', background: '#f7f9fa', height: '100vh' }}
+        style={{ padding: '0px', background: '#f7f9fa' }}
         className="col-xs-12 col-sm-3 col-md-2 col-lg-2"
       >
         <List selectable>
@@ -23,116 +24,31 @@ class Tags extends React.Component { // eslint-disable-line react/prefer-statele
               <object style={{ verticalAlign: 'middle' }} type="image/svg+xml" data={slinkIcon} />
               Slink</h2>}
           />
-          <ListItem
-            theme={styles}
-            leftIcon="group"
-            caption="#people"
-            rightIcon="more_vert"
-          />
-          <ListItem
-            theme={styles}
-            leftIcon={<span >{' '}</span>}
-            caption="#longlogntag"
-            rightIcon="more_vert"
-          />
-          <ListItem
-            theme={styles}
-            leftIcon="share"
-            caption="#design"
-          />
-          <ListItem
-            theme={styles}
-            leftIcon="share"
-            caption="#material"
-          />
-          <ListItem
-            theme={styles}
-            leftIcon={<span >{' '}</span>}
-            caption="#newmarkup"
-            rightIcon="more_vert"
-          />
-          <ListItem
-            theme={styles}
-            leftIcon="share"
-            caption="#shared"
-          />
-          <ListItem
-            theme={styles}
-            leftIcon="group"
-            caption="#people"
-            rightIcon="more_vert"
-          />
-          <ListItem
-            theme={styles}
-            leftIcon={<span >{' '}</span>}
-            caption="#pen"
-            rightIcon="more_vert"
-          />
-          <ListItem
-            theme={styles}
-            leftIcon={<span >{' '}</span>}
-            caption="#slink"
-            rightIcon="more_vert"
-          />
-          <ListItem
-            theme={styles}
-            leftIcon="group"
-            caption="#people"
-            rightIcon="more_vert"
-          />
-          <ListItem
-            theme={styles}
-            leftIcon={<span >{' '}</span>}
-            caption="#longlogntag"
-            rightIcon="more_vert"
-          />
+          {tagsFetching ? <div style={{ textAlign: 'center' }}>
+            <ProgressBar type="circular" mode="indeterminate" />
+          </div> :
+            tags.map((item) => {
+              const icon = item.users.length > 0 ? 'group' : <span >{' '}</span>;
+              return (<ListItem
+                onClick={() => this.props.selectTag(item)}
+                theme={styles}
+                leftIcon={icon}
+                caption={`#${item.value}`}
+                rightIcon="more_vert"
+              />);
+            })}
           <ListItem
             theme={styles}
             leftIcon="share"
             caption="#design"
           />
-          <ListItem
-            theme={styles}
-            leftIcon="share"
-            caption="#material"
-          />
-          <ListItem
-            theme={styles}
-            leftIcon={<span >{' '}</span>}
-            caption="#newmarkup"
-            rightIcon="more_vert"
-          />
-          <ListItem
-            theme={styles}
-            leftIcon="share"
-            caption="#shared"
-          />
-          <ListItem
-            theme={styles}
-            leftIcon="group"
-            caption="#people"
-            rightIcon="more_vert"
-          />
-          <ListItem
-            theme={styles}
-            leftIcon={<span >{' '}</span>}
-            caption="#pen"
-            rightIcon="more_vert"
-          />
-          <ListItem
-            theme={styles}
-            leftIcon={<span >{' '}</span>}
-            caption="#slink"
-            rightIcon="more_vert"
-          />
+
         </List>
       </div>
     );
   }
 }
 
-Tags.propTypes = {
-
-};
+Tags.propTypes = {};
 
 export default Tags;

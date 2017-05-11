@@ -15,8 +15,9 @@ import Footer from '../../components/Footer';
 import Tags from '../../components/Tags';
 import Toolbar from '../../components/Toolbar';
 import Documents from '../../components/Documents';
+import TagInput from '../../components/TagInput';
 
-import { init } from './actions';
+import { init, changeTags, addTag } from './actions';
 export class FilesContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   componentWillMount() {
@@ -24,7 +25,7 @@ export class FilesContainer extends React.Component { // eslint-disable-line rea
   }
 
   render() {
-    const { documentsFetching, documents } = this.props.filesContainer;
+    const { documentsFetching, documents, tagsFetching, tags, selectedTags } = this.props.filesContainer;
     return (
       <div>
         <Helmet
@@ -34,12 +35,13 @@ export class FilesContainer extends React.Component { // eslint-disable-line rea
           ]}
         />
         <div className="row">
-          <Tags />
+          <Tags selectTag={this.props.addTag} tagsFetching={tagsFetching} tags={tags} />
           <div
             style={{ height: '100vh', paddingRight: '0rem', paddingLeft: '0rem' }}
             className="col-xs-12 col-sm-9 col-md-10 col-lg-10"
           >
             <Toolbar />
+            <TagInput tags={selectedTags} onChangeTags={this.props.changeTags} />
             <Documents
               documentsFetching={documentsFetching}
               documents={documents}
@@ -61,5 +63,7 @@ const mapStateToProps = createStructuredSelector({
 });
 const mapDispatchToProps = {
   init,
+  addTag,
+  changeTags,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(FilesContainer);
