@@ -10,12 +10,11 @@
  */
 
 import React from 'react';
-
 // components
 import LandingHeader from '../../components/LandingHeader';
 import Footer from '../../components/Footer';
 import styles from './home.css';
-
+import image from './sample.png';
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
@@ -23,7 +22,24 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
         <LandingHeader />
         <div>
           <div className={styles.textCenter}>
-            <h2>What is GitHub Pages?</h2>
+            <h2 className={styles.mainTitle}>How it works</h2>
+          </div>
+          <div className="row middle-xs">
+            <div className="col-xs-5">
+              <img src={image} style={{ float: 'right' }} alt="" />
+            </div>
+            <div className="col-xs-offset-1 col-xs-6">
+              <div>
+                <ol>
+                  <li><h3 className={styles.listLanding}>Use a smartpen</h3></li>
+                  <li><h3 className={styles.listLanding}>Tag #content while writing</h3></li>
+                  <li><h3 className={styles.listLanding}>Upload your books to Slink</h3></li>
+                  <li><h3 className={styles.listLanding}>Clean up tags and transcription</h3></li>
+                  <li><h3 className={styles.listLanding}>Navigate your notes by tags and search</h3></li>
+                  <li><h3 className={styles.listLanding}>Collaborate by sharing tags</h3></li>
+                </ol>
+              </div>
+            </div>
           </div>
 
         </div>

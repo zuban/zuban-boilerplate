@@ -6,6 +6,7 @@ import {
   DOCUMENTS_LOADING_FAIL,
 
   TAGS_LOADING_SUCCESS,
+  TAGS_LOADING_FAIL,
 
   CHANGE_TAGS,
   ADD_TAG,
@@ -17,51 +18,39 @@ const service = new Service();
 
 // Individual exports for testing
 export function* initDocumentsSaga() {
-  const fetchWatcher = yield takeLatest(INIT_DOCUMENTS, initDocuments);
+  const fetchWatcher = yield takeLatest(INIT_DOCUMENTS, getDocumentsAndTags);
   yield take(LOCATION_CHANGE);
   yield cancel(fetchWatcher);
 }
 
-function* initDocuments(action) {
-  try {
-    const tags = yield call(service.getTags.bind(service), '');
-    yield put({
-      type: TAGS_LOADING_SUCCESS,
-      tags,
-    });
-    const documents = yield call(service.getDocuments.bind(service), '');
-    yield put({
-      type: DOCUMENTS_LOADING_SUCCESS,
-      documents,
-    });
-  } catch (error) {
-    yield put({
-      type: DOCUMENTS_LOADING_FAIL,
-      error: error.message });
-  }
-}
-
 export function* updateOnChangeTagsSaga() {
-  const fetchWatcher = yield takeLatest(CHANGE_TAGS, updateOnChange);
+  const fetchWatcher = yield takeLatest(CHANGE_TAGS, getDocumentsAndTags);
   yield take(LOCATION_CHANGE);
   yield cancel(fetchWatcher);
 }
 
 export function* updateOnAddTagsSaga() {
-  const fetchWatcher = yield takeLatest(ADD_TAG, updateOnChange);
+  const fetchWatcher = yield takeLatest(ADD_TAG, getDocumentsAndTags);
   yield take(LOCATION_CHANGE);
   yield cancel(fetchWatcher);
 }
 
-function* updateOnChange(action) {
+function* getDocumentsAndTags(action) {
+  const state = yield select(makeSelectFilesContainer());
+  const { selectedTags, searchText } = state;
   try {
-    const state = yield select(makeSelectFilesContainer());
-    const tags = yield call(service.getTags.bind(service), '');
+    const tags = yield call(service.getTags.bind(service), selectedTags.map((item) => item.id));
     yield put({
       type: TAGS_LOADING_SUCCESS,
       tags,
     });
-    const documents = yield call(service.getDocuments.bind(service), '');
+  } catch (error) {
+    yield put({
+      type: TAGS_LOADING_FAIL,
+      error: error.message });
+  }
+  try {
+    const documents = yield call(service.getDocuments.bind(service), searchText, selectedTags.map((item) => item.value));
     yield put({
       type: DOCUMENTS_LOADING_SUCCESS,
       documents,
