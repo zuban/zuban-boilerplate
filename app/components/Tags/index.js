@@ -11,8 +11,24 @@ import styles from './styles.css';
 import slinkIcon from './webpack.svg';
 
 class Tags extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+  getTag(item, userId) {
+    let leftIcon = item.users.length > 0 ? 'group' : <span >{' '}</span>;
+    let rightIcon = 'more_vert';
+    if (item.owner.id !== parseInt(userId)) {
+      leftIcon = 'share';
+      rightIcon = null;
+    }
+    return (<ListItem
+      onClick={() => this.props.selectTag(item)}
+      theme={styles}
+      leftIcon={leftIcon}
+      caption={`#${item.value}`}
+      rightIcon={rightIcon}
+    />);
+  }
   render() {
-    const { tagsFetching, tags } = this.props;
+    const { tagsFetching, tags, userName, userId } = this.props;
     return (
       <div
         style={{ padding: '0px', background: '#f7f9fa' }}
@@ -27,16 +43,7 @@ class Tags extends React.Component { // eslint-disable-line react/prefer-statele
           {tagsFetching ? <div style={{ textAlign: 'center' }}>
             <ProgressBar type="circular" mode="indeterminate" />
           </div> :
-            tags.map((item) => {
-              const icon = item.users.length > 0 ? 'group' : <span >{' '}</span>;
-              return (<ListItem
-                onClick={() => this.props.selectTag(item)}
-                theme={styles}
-                leftIcon={icon}
-                caption={`#${item.value}`}
-                rightIcon="more_vert"
-              />);
-            })}
+            tags.map((item) => this.getTag(item, userId))}
           <ListItem
             theme={styles}
             leftIcon="share"

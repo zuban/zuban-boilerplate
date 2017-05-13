@@ -15,11 +15,18 @@
   font-size: 22px;
 }
 
-.left :last-child > [data-react-toolbox='font-icon']{
+.left :last-child > [data-react-toolbox='font-icon'] {
   margin-right: 15px;
 }
 
+.iconMenu {
+  color: rgb(255, 255, 255) !important;
+}
 
-.neutral {
-  color: rgb(255, 255, 255);
+.toggle .button .neutral .icon {
+  color: rgb(255, 255, 255) !important;
+}
+
+.neutral:not([disabled]).flat, .neutral:not([disabled]).toggle {
+  color: rgb(255, 255, 255) !important;
 }

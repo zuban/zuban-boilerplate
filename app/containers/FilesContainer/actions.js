@@ -8,6 +8,7 @@ import {
   INIT_DOCUMENTS,
   CHANGE_TAGS,
   ADD_TAG,
+  CHANGE_TEXT,
 } from './constants';
 
 export const init = () => ({
@@ -22,4 +23,9 @@ export const changeTags = (tags) => ({
 export const addTag = (tag) => ({
   type: ADD_TAG,
   tag,
+});
+
+export const chageText = (text) => ({
+  type: CHANGE_TEXT,
+  text,
 });

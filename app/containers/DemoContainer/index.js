@@ -35,7 +35,7 @@ export class DemoContainer extends React.Component { // eslint-disable-line reac
 }
 
 DemoContainer.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

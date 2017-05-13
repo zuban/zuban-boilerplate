@@ -6,6 +6,11 @@ import { createSelector } from 'reselect';
 const selectFilesContainerDomain = () => (state) => state.get('filesContainer');
 
 /**
+ * Direct selector to the filesContainer state domain
+ */
+const selectGlobalContainerDomain = () => (state) => state.get('global');
+
+/**
  * Other specific selectors
  */
 
@@ -18,8 +23,17 @@ const makeSelectFilesContainer = () => createSelector(
   selectFilesContainerDomain(),
   (substate) => substate.toJS()
 );
+/**
+ * Default selector used by FilesContainer
+ */
 
-export default makeSelectFilesContainer;
+const makeSelectGlobal = () => createSelector(
+  selectGlobalContainerDomain(),
+  (substate) => substate.toJS()
+);
+
+// export default makeSelectFilesContainer;
 export {
-  selectFilesContainerDomain,
+  makeSelectFilesContainer,
+  makeSelectGlobal,
 };

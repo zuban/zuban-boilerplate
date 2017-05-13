@@ -11,4 +11,5 @@
 
 export const DEFAULT_LOCALE = 'en';
 export const SET_AUTHENTICATED = 'slink/App/SET_AUTHENTICATED';
+export const UPDATE_USER = 'slink/App/UPDATE_USER';
 export const SET_LOGOUT = 'slink/App/SET_LOGOUT';

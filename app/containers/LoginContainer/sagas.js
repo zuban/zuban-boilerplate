@@ -1,4 +1,4 @@
-import { take, call, cancel, put, takeLatest } from 'redux-saga/effects';
+import { take, call, fork, cancel, put, takeLatest , takeEvery} from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import {
@@ -9,23 +9,26 @@ import {
 
 import {
   SET_AUTHENTICATED,
+  UPDATE_USER,
 } from '../App/constants';
 
 import { Service } from '../../service/service';
 const service = new Service();
 // Individual exports for testing
 export function* loginSaga() {
-  const fetchWatcher = yield takeLatest(SENT_LOGIN_DATA, loginUser);
+  const fetchWatcher = yield takeEvery(SENT_LOGIN_DATA, loginUser);
   yield take(LOCATION_CHANGE);
   yield cancel(fetchWatcher);
 }
 
 function* loginUser(action) {
   try {
-    yield call(service.login.bind(service),
+    const [auth, user] = yield [call(service.login.bind(service),
       action.username,
       action.password
-    );
+    ), call(service.getUser.bind(service))];
+
+    debugger;
     yield put({
       type: LOGIN_SUCCESS,
     });
@@ -33,11 +36,17 @@ function* loginUser(action) {
       type: SET_AUTHENTICATED,
       username: action.username,
     });
+    service.setUserId(user.id);
+    yield put({
+      type: UPDATE_USER,
+      userId: user.id,
+    });
     browserHistory.push('/home');
   } catch (error) {
     yield put({ type: LOGIN_FAIL, error: error.message });
   }
 }
+
 
 // All sagas to be loaded
 export default [

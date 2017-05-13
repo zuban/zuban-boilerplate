@@ -10,7 +10,6 @@ import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
 
-
 const stateTransformer = (state) => {
   if (Iterable.isIterable(state)) return state.toJS();
   else return state;
@@ -35,6 +34,8 @@ export default function configureStore(initialState = {}, history) {
   const enhancers = [
     applyMiddleware(...middlewares),
   ];
+
+
 
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */

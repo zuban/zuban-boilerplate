@@ -13,3 +13,4 @@ export const TAGS_LOADING_FAIL = 'app/FilesContainer/TAGS_LOADING_FAIL';
 
 export const CHANGE_TAGS = 'app/FilesContainer/CHANGE_TAGS';
 export const ADD_TAG = 'app/FilesContainer/ADD_TAG';
+export const CHANGE_TEXT = 'app/FilesContainer/CHANGE_TEXT';

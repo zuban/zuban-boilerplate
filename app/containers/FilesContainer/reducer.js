@@ -15,6 +15,7 @@ import {
 
   CHANGE_TAGS,
   ADD_TAG,
+  CHANGE_TEXT
 } from './constants';
 
 const initialState = fromJS({
@@ -50,11 +51,20 @@ function filesContainerReducer(state = initialState, action) {
         .set('tags', []);
     case CHANGE_TAGS:
       return state
-        .set('selectedTags', action.tags);
+        .set('selectedTags', action.tags)
+        .set('tagsFetching', true)
+        .set('documentsFetching', true);
+    case CHANGE_TEXT:
+      return state
+        .set('searchText', action.text)
+        .set('tagsFetching', true)
+        .set('documentsFetching', true);
     case ADD_TAG: {
       const selectedTags = state.get('selectedTags');
       return state
-        .set('selectedTags', [...selectedTags, action.tag]);
+        .set('selectedTags', [...selectedTags, action.tag])
+        .set('tagsFetching', true)
+        .set('documentsFetching', true);
     }
     default:
       return state;

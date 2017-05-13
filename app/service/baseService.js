@@ -531,6 +531,11 @@ class BaseService {
   }
 
   getUser() {
+    if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
+      return new Promise((resolve, reject) => {
+        this.processResponse(null, {body: {"id": 309, "email": "demo@", "userName": "demo"}}).then(resolve, reject);
+      })
+    }
     return new Promise((resolve, reject) => {
       this.apiClient
         .get(`hw/services/user?email=${getCookie('username')}`)
@@ -538,6 +543,9 @@ class BaseService {
           this.processResponse(error, response).then(resolve, reject);
         });
     });
+  }
+  setUserId(id) {
+    setCookie('userId', id);
   }
 
   checkToken() {
@@ -548,9 +556,14 @@ class BaseService {
     return getCookie('username');
   }
 
+  getCurrentUserId() {
+    return getCookie('userId');
+  }
+
   logout() {
     deleteCookie('access-token');
     deleteCookie('username');
+    deleteCookie('userId');
   }
 }
 

@@ -13,13 +13,14 @@ import Input from 'react-toolbox/lib/input';
 import { IconMenu, MenuItem, MenuDivider } from 'react-toolbox/lib/menu';
 import { Link } from 'react-router';
 import styles from './styles.css';
-
+import inputStyles from './inputStyles.css';
 class Toolbar extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <AppBar title="Documents view">
-        <Input type="text" label="Name" name="name"maxLength={16} />
+        <Input onChange={this.props.onChageText}theme={inputStyles} icon="search" type="text" name="name" />
         <Navigation style={{ color: 'rgb(255, 255, 255)' }}type="horizontal" >
+
           <IconMenu theme={styles} icon="more_vert" position="topRight" menuRipple>
             <MenuItem value="profile" icon="person" caption="Profile" />
             <MenuItem value="help" icon="help" caption="Help" />

@@ -10,8 +10,9 @@ import {
 
   CHANGE_TAGS,
   ADD_TAG,
+  CHANGE_TEXT,
 } from './constants';
-import makeSelectFilesContainer from './selectors';
+import {makeSelectFilesContainer} from './selectors';
 import { Service } from '../../service/service';
 const service = new Service();
 
@@ -35,6 +36,12 @@ export function* updateOnAddTagsSaga() {
   yield cancel(fetchWatcher);
 }
 
+export function* updateChangeTextSaga() {
+  const fetchWatcher = yield takeLatest(CHANGE_TEXT, getDocumentsAndTags);
+  yield take(LOCATION_CHANGE);
+  yield cancel(fetchWatcher);
+}
+
 function* getDocumentsAndTags(action) {
   const state = yield select(makeSelectFilesContainer());
   const { selectedTags, searchText } = state;
@@ -50,7 +57,7 @@ function* getDocumentsAndTags(action) {
       error: error.message });
   }
   try {
-    const documents = yield call(service.getDocuments.bind(service), searchText, selectedTags.map((item) => item.value));
+    const documents = yield call(service.getDocuments.bind(service), selectedTags.map((item) => item.value), searchText);
     yield put({
       type: DOCUMENTS_LOADING_SUCCESS,
       documents,
@@ -67,4 +74,5 @@ export default [
   initDocumentsSaga,
   updateOnChangeTagsSaga,
   updateOnAddTagsSaga,
+  updateChangeTextSaga,
 ];

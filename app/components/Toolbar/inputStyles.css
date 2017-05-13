@@ -1,0 +1,16 @@
+.inputElement {
+  border-bottom: 1px solid rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+}
+.inputElement:focus:not([disabled]):not([readonly]) ~ .icon {
+  color: rgb(48, 63, 159);
+}
+
+.icon {
+  color: rgb(255, 255, 255);
+  left: -48px;
+}
+
+.hint {
+  color: rgb(255, 255, 255);
+}
