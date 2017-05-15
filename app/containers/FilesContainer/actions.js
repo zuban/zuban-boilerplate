@@ -9,10 +9,15 @@ import {
   CHANGE_TAGS,
   ADD_TAG,
   CHANGE_TEXT,
+  TOGGLE_MODAL,
 } from './constants';
 
 export const init = () => ({
   type: INIT_DOCUMENTS,
+});
+
+export const toggleModal = () => ({
+  type: TOGGLE_MODAL,
 });
 
 export const changeTags = (tags) => ({

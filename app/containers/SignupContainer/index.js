@@ -29,7 +29,7 @@ export class SignupContainer extends React.Component { // eslint-disable-line re
     return (
       <div>
         <Helmet
-          title="SignupContainer"
+          title="Slink: signup"
           meta={[
             { name: 'description', content: 'Description of SignupContainer' },
           ]}

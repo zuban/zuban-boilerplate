@@ -20,14 +20,14 @@ export class DemoContainer extends React.Component { // eslint-disable-line reac
     return (
       <div>
         <Helmet
-          title="DemoContainer"
+          title="Slink: demo"
           meta={[
             { name: 'description', content: 'Description of DemoContainer' },
           ]}
         />
-        <h3 style={{textAlign: 'center'}}>Setup your workspace</h3>
-        <div style={{textAlign: 'center'}}>
-        <ProgressBar type="circular" mode="indeterminate" />
+        <h3 style={{ textAlign: 'center' }}>Setup your workspace</h3>
+        <div style={{ textAlign: 'center' }}>
+          <ProgressBar type="circular" mode="indeterminate" />
         </div>
       </div>
     );

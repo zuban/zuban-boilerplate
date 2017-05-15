@@ -12,7 +12,7 @@ import {
   ADD_TAG,
   CHANGE_TEXT,
 } from './constants';
-import {makeSelectFilesContainer} from './selectors';
+import { makeSelectFilesContainer } from './selectors';
 import { Service } from '../../service/service';
 const service = new Service();
 

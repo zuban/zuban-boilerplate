@@ -25,10 +25,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
             <h2 className={styles.mainTitle}>How it works</h2>
           </div>
           <div className="row middle-xs">
-            <div className="col-xs-5">
-              <img src={image} style={{ float: 'right' }} alt="" />
-            </div>
-            <div className="col-xs-offset-1 col-xs-6">
+            <div style={{margin: '0 auto'}} >
               <div>
                 <ol>
                   <li><h3 className={styles.listLanding}>Use a smartpen</h3></li>

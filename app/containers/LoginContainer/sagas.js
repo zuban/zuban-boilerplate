@@ -1,4 +1,4 @@
-import { take, call, fork, cancel, put, takeLatest , takeEvery} from 'redux-saga/effects';
+import { take, call, fork, cancel, put, takeLatest, takeEvery } from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import {
@@ -28,7 +28,6 @@ function* loginUser(action) {
       action.password
     ), call(service.getUser.bind(service))];
 
-    debugger;
     yield put({
       type: LOGIN_SUCCESS,
     });

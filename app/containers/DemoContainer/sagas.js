@@ -9,6 +9,7 @@ import {
 
 import {
   SET_AUTHENTICATED,
+  UPDATE_USER,
 } from '../App/constants';
 
 import { Service } from '../../service/service';
@@ -22,16 +23,22 @@ export function* loginSaga() {
 
 function* loginUser(action) {
   try {
-    yield call(service.login.bind(service),
+    const [auth, user] = yield [call(service.login.bind(service),
       action.username,
       action.password
-    );
+    ), call(service.getUser.bind(service))];
+
     yield put({
       type: LOGIN_SUCCESS,
     });
     yield put({
       type: SET_AUTHENTICATED,
       username: action.username,
+    });
+    service.setUserId(user.id);
+    yield put({
+      type: UPDATE_USER,
+      userId: user.id,
     });
     browserHistory.push('/home');
   } catch (error) {

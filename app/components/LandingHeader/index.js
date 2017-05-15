@@ -540,11 +540,9 @@ class LandingHeader extends React.Component { // eslint-disable-line react/prefe
           </div>
         </div>
         <div className={styles.firstBlockText}>
-          <h1 className={styles.slogan} >Slink</h1>
+          <h1 className={styles.slogan} >Slink (beta)</h1>
           <h3 className={styles.about}>Productivity solution for smartpens</h3>
           <p className={styles.description}>Handwritting on paper is transcribed, organized by handwritten tags and accessible in the cloud.
-          </p>
-          <p className={styles.description}>Ready? Let’s get started.
           </p>
           <Link to={'/login'}>
             <Button raised label="LOGIN" />
@@ -552,7 +550,6 @@ class LandingHeader extends React.Component { // eslint-disable-line react/prefe
           <Link to={'/signup'}>
             <Button raised label="SIGNUP" />
           </Link>
-          <p className={styles.description}>Request demo?</p>
           <div style={{ marginTop: '5px' }}>
             <Link to={'/demo'}>
               <Button raised label="DEMO" />

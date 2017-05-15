@@ -27,6 +27,7 @@ class Tags extends React.Component { // eslint-disable-line react/prefer-statele
       rightIcon={rightIcon}
     />);
   }
+
   render() {
     const { tagsFetching, tags, userName, userId } = this.props;
     return (
@@ -37,19 +38,12 @@ class Tags extends React.Component { // eslint-disable-line react/prefer-statele
         <List selectable>
           <ListSubHeader
             caption={<h2 style={{ marginLeft: '9px', marginTop: '8px' }}>
-              <object style={{ verticalAlign: 'middle' }} type="image/svg+xml" data={slinkIcon} />
-              Slink</h2>}
+              Slink (beta)</h2>}
           />
           {tagsFetching ? <div style={{ textAlign: 'center' }}>
             <ProgressBar type="circular" mode="indeterminate" />
           </div> :
             tags.map((item) => this.getTag(item, userId))}
-          <ListItem
-            theme={styles}
-            leftIcon="share"
-            caption="#design"
-          />
-
         </List>
       </div>
     );

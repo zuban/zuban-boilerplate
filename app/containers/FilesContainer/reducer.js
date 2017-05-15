@@ -15,7 +15,8 @@ import {
 
   CHANGE_TAGS,
   ADD_TAG,
-  CHANGE_TEXT
+  CHANGE_TEXT,
+  TOGGLE_MODAL,
 } from './constants';
 
 const initialState = fromJS({
@@ -27,6 +28,8 @@ const initialState = fromJS({
   // for documents
   documentsFetching: true,
   documents: [],
+
+  isModalOpen: false,
 });
 
 function filesContainerReducer(state = initialState, action) {
@@ -49,6 +52,9 @@ function filesContainerReducer(state = initialState, action) {
       return state
         .set('tagsFetching', false)
         .set('tags', []);
+    case TOGGLE_MODAL:
+      return state
+        .set('isModalOpen', !state.get('isModalOpen'));
     case CHANGE_TAGS:
       return state
         .set('selectedTags', action.tags)

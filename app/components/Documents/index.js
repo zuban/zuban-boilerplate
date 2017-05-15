@@ -8,10 +8,10 @@ import React from 'react';
 // import styled from 'styled-components';
 import { Card, CardTitle } from 'react-toolbox/lib/card';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
-import styles from './styles.css'
+import styles from './styles.css';
 class Documents extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { documents, documentsFetching } = this.props;
+    const { documents, documentsFetching, openDocument } = this.props;
     return (
       <div>
         {documentsFetching ? <div style={{ textAlign: 'center' }}>
@@ -29,7 +29,7 @@ class Documents extends React.Component { // eslint-disable-line react/prefer-st
               { item.map((card, i) => {
                 const padding = { padding: '10px', maxWidth: '25%' };
                 return (<div style={padding} className="col-xs">
-                  <Card>
+                  <Card onClick={openDocument}>
                     <img width="100%" src={`hw/services/files/svg/${card.id}/content.svg`} alt="Card image cap" />
                     <CardTitle
                       theme={styles}

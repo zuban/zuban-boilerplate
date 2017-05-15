@@ -23,7 +23,7 @@ export class UploadContainer extends React.Component { // eslint-disable-line re
     return (
       <div>
         <Helmet
-          title="UploadContainer"
+          title="Slink: upload"
           meta={[
             { name: 'description', content: 'Description of UploadContainer' },
           ]}

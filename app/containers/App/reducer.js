@@ -34,7 +34,7 @@ function globalReducer(state = initialState, action) {
         .set('userName', null);
     case UPDATE_USER:
       return state
-        .set('userId', action.userId)
+        .set('userId', action.userId);
     default:
       return state;
   }

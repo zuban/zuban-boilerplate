@@ -13,7 +13,7 @@ import { Link } from 'react-router';
 class LoginHeader extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <AppBar title={<Link style={{ textDecoration: 'none' }} to={'/'}><h2 >Slink</h2></Link>}>
+      <AppBar title={<Link style={{ textDecoration: 'none' }} to={'/'}><h2 >Slink (beta)</h2></Link>}>
         <Navigation type="horizontal">
         </Navigation>
       </AppBar>

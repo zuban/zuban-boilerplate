@@ -71,7 +71,7 @@ export class LoginContainer extends React.Component { // eslint-disable-line rea
     return (
       <div>
         <Helmet
-          title="LoginContainer"
+          title="Slink: login"
           meta={[
             { name: 'description', content: 'Description of LoginContainer' },
           ]}
