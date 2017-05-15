@@ -4,7 +4,7 @@
  *
  */
 
-import { fromJS } from 'immutable';
+import { fromJS, Map } from 'immutable';
 import {
   INIT_DOCUMENTS,
   DOCUMENTS_LOADING_SUCCESS,
@@ -17,7 +17,14 @@ import {
   ADD_TAG,
   CHANGE_TEXT,
   TOGGLE_MODAL,
+  GET_DOCUMENT,
+  GET_DOCUMENT_SUCCESS,
+  GET_DOCUMENT_ERROR,
+  UPDATE_EDITOR_STATE,
+  UPDATE_MODAL_TAGS,
+  SAVE_DOCUMENT_SUCCESS,
 } from './constants';
+
 
 const initialState = fromJS({
   // for tags
@@ -29,7 +36,17 @@ const initialState = fromJS({
   documentsFetching: true,
   documents: [],
 
+  // for modal
   isModalOpen: false,
+  modalFetching: true,
+
+  modalFileName: null,
+  modalHashTags: [],
+  modalId: null,
+  modalOriginalContent: null,
+  modalOwner: null,
+  modalRecognizedContent: null,
+  modalEditorState: null,
 });
 
 function filesContainerReducer(state = initialState, action) {
@@ -65,6 +82,47 @@ function filesContainerReducer(state = initialState, action) {
         .set('searchText', action.text)
         .set('tagsFetching', true)
         .set('documentsFetching', true);
+    case GET_DOCUMENT:
+      return state
+        .set('isModalOpen', true)
+        .set('modalFetching', true);
+    case GET_DOCUMENT_SUCCESS:
+      return state
+        .set('modalFetching', false)
+        .set('modalFileName', action.document.fileName)
+        .set('modalHashTags', action.document.hashTags)
+        .set('modalId', action.document.id)
+        .set('modalOriginalContent', action.document.originalContent)
+        .set('modalOwner', action.document.owner)
+        .set('modalRecognizedContent', action.document.recognizedContent)
+        .set('modalEditorState', action.document.recognizedContent);
+    case UPDATE_EDITOR_STATE:
+      return state
+        .set('modalEditorState', action.state);
+    case SAVE_DOCUMENT_SUCCESS:
+      return state
+        .set('isModalOpen', false)
+        .set('modalFetching', true)
+        .set('modalFileName', null)
+        .set('modalHashTags', null)
+        .set('modalId', null)
+        .set('modalOriginalContent', null)
+        .set('modalOwner', null)
+        .set('modalRecognizedContent', null)
+        .set('modalEditorState', null);
+    case UPDATE_MODAL_TAGS: {
+      const filteredProps = action.tags.map((item) => {
+        if (item.className) {
+          return {
+            value: item.id,
+          };
+        } else {
+          return item;
+        }
+      });
+      return state
+        .set('modalHashTags', filteredProps);
+    }
     case ADD_TAG: {
       const selectedTags = state.get('selectedTags');
       return state

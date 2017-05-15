@@ -18,15 +18,25 @@ import Documents from '../../components/Documents';
 import TagInput from '../../components/TagInput';
 import ModalDocument from '../../components/ModalDocument';
 
-import { init, changeTags, addTag, chageText, toggleModal } from './actions';
+import { init, changeTags, addTag, chageText, toggleModal, getDocumentById, updateEditorState, changeModalTags, saveDocument} from './actions';
 export class FilesContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   componentWillMount() {
     this.props.init();
   }
 
+
   render() {
-    const { documentsFetching, documents, tagsFetching, tags, selectedTags, isModalOpen } = this.props.filesContainer;
+    const { documentsFetching, documents, tagsFetching, tags, selectedTags,
+      isModalOpen,
+      modalFetching,
+      modalFileName,
+      modalHashTags,
+      modalId,
+      modalOriginalContent,
+      modalOwner,
+      modalRecognizedContent,
+      modalEditorState } = this.props.filesContainer;
     const { userName, userId } = this.props.global;
     return (
       <div>
@@ -45,14 +55,28 @@ export class FilesContainer extends React.Component { // eslint-disable-line rea
             <Toolbar onChageText={this.props.chageText} />
             <TagInput tags={selectedTags} onChangeTags={this.props.changeTags} />
             <Documents
-              openDocument={this.props.toggleModal}
+              openDocument={this.props.getDocumentById}
               documentsFetching={documentsFetching}
               documents={documents}
             />
           </div>
         </div>
 
-        <ModalDocument isModalOpen={isModalOpen} handleModalToggle={this.props.toggleModal}/>
+        <ModalDocument
+          isModalOpen={isModalOpen}
+          handleModalToggle={this.props.toggleModal}
+          modalFetching={modalFetching}
+          modalFileName={modalFileName}
+          modalHashTags={modalHashTags}
+          modalId={modalId}
+          modalOriginalContent={modalOriginalContent}
+          modalOwner={modalOwner}
+          modalRecognizedContent={modalRecognizedContent}
+          modalEditorState={modalEditorState}
+          updateEditorState={this.props.updateEditorState}
+          saveDocument={this.props.saveDocument}
+          onChangeModalTags={this.props.changeModalTags}
+        />
         <Footer />
 
       </div>
@@ -74,5 +98,9 @@ const mapDispatchToProps = {
   changeTags,
   chageText,
   toggleModal,
+  getDocumentById,
+  updateEditorState,
+  changeModalTags,
+  saveDocument,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(FilesContainer);

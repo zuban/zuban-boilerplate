@@ -29,8 +29,8 @@ class Documents extends React.Component { // eslint-disable-line react/prefer-st
               { item.map((card, i) => {
                 const padding = { padding: '10px', maxWidth: '25%' };
                 return (<div style={padding} className="col-xs">
-                  <Card onClick={openDocument}>
-                    <img width="100%" src={`hw/services/files/svg/${card.id}/content.svg`} alt="Card image cap" />
+                  <Card onClick={() => openDocument(card.id)}>
+                    <img width="100%" src={`hw/services/files/svg/${card.id}/content.svg`} alt="document" />
                     <CardTitle
                       theme={styles}
                       title={card.fileName}

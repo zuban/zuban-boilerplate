@@ -11,6 +11,12 @@ import {
   CHANGE_TAGS,
   ADD_TAG,
   CHANGE_TEXT,
+  GET_DOCUMENT,
+  GET_DOCUMENT_SUCCESS,
+  GET_DOCUMENT_ERROR,
+  SAVE_DOCUMENT,
+  SAVE_DOCUMENT_SUCCESS,
+  SAVE_DOCUMENT_ERROR,
 } from './constants';
 import { makeSelectFilesContainer } from './selectors';
 import { Service } from '../../service/service';
@@ -42,6 +48,18 @@ export function* updateChangeTextSaga() {
   yield cancel(fetchWatcher);
 }
 
+export function* saveDocumentSaga() {
+  const fetchWatcher = yield takeLatest(SAVE_DOCUMENT, saveDocument);
+  yield take(LOCATION_CHANGE);
+  yield cancel(fetchWatcher);
+}
+
+export function* getDocumentSaga() {
+  const fetchWatcher = yield takeLatest(GET_DOCUMENT, getDocument);
+  yield take(LOCATION_CHANGE);
+  yield cancel(fetchWatcher);
+}
+
 function* getDocumentsAndTags(action) {
   const state = yield select(makeSelectFilesContainer());
   const { selectedTags, searchText } = state;
@@ -69,10 +87,56 @@ function* getDocumentsAndTags(action) {
   }
 }
 
+function* saveDocument(action) {
+  const state = yield select(makeSelectFilesContainer());
+
+  const editorState = action.state;
+  const {
+    modalFileName,
+    modalHashTags,
+    modalId,
+    modalOriginalContent,
+    modalOwner,
+  } = state;
+  try {
+    yield call(service.saveDocumentById.bind(service), modalId, {
+      fileName: modalFileName,
+      hashTags: modalHashTags,
+      id: modalId,
+      originalContent: modalOriginalContent,
+      owner: modalOwner,
+      recognizedContent: editorState,
+    });
+    yield put({
+      type: SAVE_DOCUMENT_SUCCESS,
+    });
+  } catch (error) {
+    yield put({
+      type: SAVE_DOCUMENT_ERROR,
+      error: error.message });
+  }
+}
+
+function* getDocument(action) {
+  try {
+    const document = yield call(service.getDocumentById.bind(service), action.id);
+    yield put({
+      type: GET_DOCUMENT_SUCCESS,
+      document,
+    });
+  } catch (error) {
+    yield put({
+      type: GET_DOCUMENT_ERROR,
+      error: error.message });
+  }
+}
+
 // All sagas to be loaded
 export default [
   initDocumentsSaga,
   updateOnChangeTagsSaga,
   updateOnAddTagsSaga,
   updateChangeTextSaga,
+  getDocumentSaga,
+  saveDocumentSaga,
 ];

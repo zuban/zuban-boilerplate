@@ -6,7 +6,9 @@
 
 import React, { Component } from 'react';
 import Select from 'react-select';
+import 'react-select/dist/react-select.css'
 import { Service } from '../../service/service';
+
 // eslint-disable-next-line new-cap
 const service = new Service();
 

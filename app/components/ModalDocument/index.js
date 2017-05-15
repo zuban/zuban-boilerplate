@@ -1,49 +1,107 @@
 /**
-*
-* ModalDocument
-*
-*/
+ *
+ * ModalDocument
+ *
+ */
 
 import React from 'react';
 // import styled from 'styled-components';
 import Dialog from 'react-toolbox/lib/dialog';
 import { Card } from 'react-toolbox/lib/card';
-import { Editor } from 'react-draft-wysiwyg'
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+import { Editor } from 'react-draft-wysiwyg';
 import styles from './styles.css';
-
+import FormTags from '../../components/FormTags';
+import { EditorState, convertFromHTML, ContentState } from 'draft-js';
+import { stateToHTML } from 'draft-js-export-html';
 class ModalDocument extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
+
+  constructor(...props) {
+    super(...props);
+    this.state = {
+      editorState: null,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+    if (!nextProps.modalFetching && this.props.modalFetching) {
+      const defaultContentState = convertFromHTML(nextProps.modalEditorState ? nextProps.modalEditorState : '');
+      const content = ContentState.createFromBlockArray(
+        defaultContentState.contentBlocks,
+        defaultContentState.entityMap
+      );
+      const editorState = EditorState.createWithContent(content);
+
+      this.setState({
+        editorState,
+      });
+    }
+  }
+
   actions = [
-    { label: 'Cancel', onClick: this.handleModalToggle },
-    { label: 'Save', onClick: this.handleToggle },
+    { label: 'Cancel', onClick: this.props.handleModalToggle },
+    { label: 'Delete document', onClick: this.props.deleteDocument },
+    { label: 'Save', onClick: () => this.props.saveDocument(stateToHTML(this.state.editorState.getCurrentContent())) },
   ];
 
   render() {
+    const {
+      isModalOpen,
+      modalFetching,
+      modalFileName,
+      modalHashTags,
+      modalId,
+      modalOriginalContent,
+      modalOwner,
+      handleModalToggle,
+    } = this.props;
+
     return (
       <Dialog
         theme={styles}
         actions={this.actions}
-        active={this.props.isModalOpen}
-        onEscKeyDown={this.props.handleModalToggle}
-        onOverlayClick={this.props.handleModalToggle}
+        active={isModalOpen}
+        onEscKeyDown={handleModalToggle}
+        onOverlayClick={handleModalToggle}
         title="Document Viewer"
       >
+        {modalFetching ? 'Loading...' :
         <div className="row">
           <div className="col-sm-6">
             <Card>
-              <img width="100%" alt="Card image cap" />
+              <img width="100%" src={`hw/services/files/svg/${modalId}/content.svg`} alt="document" />
             </Card>
           </div>
-          <div className="col-sm-6">awdawd</div>
-        </div>
+          <div className="col-sm-6">
+            <div>
+              <h3>{modalFileName}</h3>
+              <p>{`Upload by: ${modalOwner.userName}`}</p>
+              <FormTags
+                readOnly={false} value={modalHashTags}
+                onChange={(tags) => this.props.onChangeModalTags(tags)}
+              />
+              <Editor
+                readOnly={false}
+                editorState={this.state.editorState}
+                onEditorStateChange={(state) => this.setState({
+                  editorState: state,
+                })}
+              />
+              <div
+                contentEditable={false}
+                style={{ fontSize: '80%', fontWeight: '400' }}
+                dangerouslySetInnerHTML={{ __html: modalOriginalContent }}
+              />
+            </div>
+          </div>
+        </div>}
+
       </Dialog>
     );
   }
 }
 
-ModalDocument.propTypes = {
-
-};
+ModalDocument.propTypes = {};
 
 export default ModalDocument;
