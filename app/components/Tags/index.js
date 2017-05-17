@@ -37,8 +37,16 @@ class Tags extends React.Component { // eslint-disable-line react/prefer-statele
       >
         <List selectable>
           <ListSubHeader
-            caption={<h2 style={{ marginLeft: '9px', marginTop: '8px' }}>
-              Slink (beta)</h2>}
+            caption={<h2 style={{ marginLeft: '9px', marginTop: '0px' }}>
+              Slink
+              <p
+                style={{
+                  display: 'inline-block',
+                  fontSize: '0.8em',
+                  fontWeight: '300',
+                }}
+              >&nbsp; beta</p></h2>
+            }
           />
           {tagsFetching ? <div style={{ textAlign: 'center' }}>
             <ProgressBar type="circular" mode="indeterminate" />

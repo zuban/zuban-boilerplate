@@ -25,7 +25,7 @@ export class DemoContainer extends React.Component { // eslint-disable-line reac
             { name: 'description', content: 'Description of DemoContainer' },
           ]}
         />
-        <h3 style={{ textAlign: 'center' }}>Setup your workspace</h3>
+        <h3 style={{ textAlign: 'center' }}>Loading...</h3>
         <div style={{ textAlign: 'center' }}>
           <ProgressBar type="circular" mode="indeterminate" />
         </div>

@@ -18,7 +18,7 @@ class Toolbar extends React.Component { // eslint-disable-line react/prefer-stat
   render() {
     return (
       <AppBar title="Documents view">
-        <Input onChange={this.props.onChageText}theme={inputStyles} icon="search" type="text" name="name" />
+        <Input onChange={this.props.onChageText} theme={inputStyles} icon="search" type="text" name="name" />
         <Navigation style={{ color: 'rgb(255, 255, 255)' }}type="horizontal" >
 
           <IconMenu theme={styles} icon="more_vert" position="topRight" menuRipple>

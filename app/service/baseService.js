@@ -86,8 +86,8 @@ class BaseService {
         resolve(response.body);
       } else {
         if (error.status === 401 || error.status === 403) {
-          BaseService.logout();
-          browserHistory.push('/video-submission-form/login/');
+          this.logout();
+          browserHistory.push('/login');
         }
         reject({
           status: error && error.status,
