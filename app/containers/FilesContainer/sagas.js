@@ -17,6 +17,14 @@ import {
   SAVE_DOCUMENT,
   SAVE_DOCUMENT_SUCCESS,
   SAVE_DOCUMENT_ERROR,
+
+  DELETE_DOCUMENT,
+  DELETE_DOCUMENT_SUCCESS,
+  DELETE_DOCUMENT_ERROR,
+  OPEN_TAG_MODAL,
+
+  GET_TAG_MODAL_DATA_SUCCESS,
+  GET_TAG_MODAL_DATA_ERROR
 } from './constants';
 import { makeSelectFilesContainer } from './selectors';
 import { Service } from '../../service/service';
@@ -50,6 +58,16 @@ export function* updateChangeTextSaga() {
 
 export function* saveDocumentSaga() {
   const fetchWatcher = yield takeLatest(SAVE_DOCUMENT, saveDocument);
+  yield take(LOCATION_CHANGE);
+  yield cancel(fetchWatcher);
+}
+export function* deleteDocumentSaga() {
+  const fetchWatcher = yield takeLatest(DELETE_DOCUMENT, deleteDocument);
+  yield take(LOCATION_CHANGE);
+  yield cancel(fetchWatcher);
+}
+export function* openTagSaga() {
+  const fetchWatcher = yield takeLatest(OPEN_TAG_MODAL, openTag);
   yield take(LOCATION_CHANGE);
   yield cancel(fetchWatcher);
 }
@@ -87,6 +105,22 @@ function* getDocumentsAndTags(action) {
   }
 }
 
+
+function* openTag(action) {
+  try {
+    const documents = yield call(service.getMyDocuments.bind(service));
+    yield put({
+      type: GET_TAG_MODAL_DATA_SUCCESS,
+      tag: action.tag,
+      documents: documents,
+    });
+  } catch (error) {
+    yield put({
+      type: GET_TAG_MODAL_DATA_ERROR,
+      error: error.message });
+  }
+}
+
 function* saveDocument(action) {
   const state = yield select(makeSelectFilesContainer());
 
@@ -117,6 +151,23 @@ function* saveDocument(action) {
   }
 }
 
+function* deleteDocument(action) {
+  const state = yield select(makeSelectFilesContainer());
+  const {
+    modalId,
+  } = state;
+  try {
+    yield call(service.deleteDocumentById.bind(service), modalId);
+    yield put({
+      type: DELETE_DOCUMENT_SUCCESS,
+    });
+  } catch (error) {
+    yield put({
+      type: DELETE_DOCUMENT_ERROR,
+      error: error.message });
+  }
+}
+
 function* getDocument(action) {
   try {
     const document = yield call(service.getDocumentById.bind(service), action.id);
@@ -139,4 +190,6 @@ export default [
   updateChangeTextSaga,
   getDocumentSaga,
   saveDocumentSaga,
+  deleteDocumentSaga,
+  openTagSaga
 ];

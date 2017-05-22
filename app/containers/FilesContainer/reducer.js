@@ -19,10 +19,19 @@ import {
   TOGGLE_MODAL,
   GET_DOCUMENT,
   GET_DOCUMENT_SUCCESS,
-  GET_DOCUMENT_ERROR,
+  // todo impelement error handling
   UPDATE_EDITOR_STATE,
   UPDATE_MODAL_TAGS,
   SAVE_DOCUMENT_SUCCESS,
+  // todo impelement error handling
+  DELETE_DOCUMENT_SUCCESS,
+  // todo impelement error handling
+
+
+  TOGGLE_TAG_MODAL,
+  OPEN_TAG_MODAL,
+  GET_TAG_MODAL_DATA_SUCCESS,
+  GET_TAG_MODAL_DATA_ERROR,
 } from './constants';
 
 
@@ -47,6 +56,13 @@ const initialState = fromJS({
   modalOwner: null,
   modalRecognizedContent: null,
   modalEditorState: null,
+
+  // for tag modal
+  isTagModalOpen: false,
+  tagModalFetching: true,
+  tagModalTag: null,
+  tagModalDocuments: [],
+  initialTagObject: null,
 });
 
 function filesContainerReducer(state = initialState, action) {
@@ -72,6 +88,9 @@ function filesContainerReducer(state = initialState, action) {
     case TOGGLE_MODAL:
       return state
         .set('isModalOpen', !state.get('isModalOpen'));
+    case TOGGLE_TAG_MODAL:
+      return state
+        .set('isTagModalOpen', !state.get('isTagModalOpen'));
     case CHANGE_TAGS:
       return state
         .set('selectedTags', action.tags)
@@ -110,6 +129,17 @@ function filesContainerReducer(state = initialState, action) {
         .set('modalOwner', null)
         .set('modalRecognizedContent', null)
         .set('modalEditorState', null);
+    case DELETE_DOCUMENT_SUCCESS:
+      return state
+        .set('isModalOpen', false)
+        .set('modalFetching', true)
+        .set('modalFileName', null)
+        .set('modalHashTags', null)
+        .set('modalId', null)
+        .set('modalOriginalContent', null)
+        .set('modalOwner', null)
+        .set('modalRecognizedContent', null)
+        .set('modalEditorState', null);
     case UPDATE_MODAL_TAGS: {
       const filteredProps = action.tags.map((item) => {
         if (item.className) {
@@ -129,6 +159,50 @@ function filesContainerReducer(state = initialState, action) {
         .set('selectedTags', [...selectedTags, action.tag])
         .set('tagsFetching', true)
         .set('documentsFetching', true);
+    }
+    case GET_TAG_MODAL_DATA_SUCCESS: {
+      // const selectedTags = state.get('selectedTags');
+
+      let { tag, documents } = action;
+      const initialTagObject = Object.assign({}, tag);
+
+      tag.modalSelectedFiles = documents.reduce((sum, item) => {
+        if (tag.fileIds.includes(item.id)) {
+          return [...sum, {
+            value: item.id,
+            label: item.fileName,
+          }];
+        } else {
+          return sum;
+        }
+      }, []);
+
+      documents = documents.map((item) => ({
+        value: item.id,
+        label: item.fileName,
+      }));
+
+      tag.users = tag.users.map((item) => ({
+        value: item.id,
+        label: item.email,
+        meta: item,
+      }))
+
+      tag.fileIds = tag.fileIds.map((item) => ({
+        value: item,
+        label: null,
+      }));
+
+      return state
+        .set('tagModalFetching', false)
+        .set('tagModalTag', tag)
+        .set('initialTagObject', initialTagObject)
+        .set('tagModalDocuments', documents);
+    }
+    case OPEN_TAG_MODAL: {
+      return state
+        .set('isTagModalOpen', true)
+        .set('tagModalFetching', true);
     }
     default:
       return state;

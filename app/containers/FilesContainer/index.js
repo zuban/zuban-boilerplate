@@ -8,7 +8,6 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
-import Dialog from 'react-toolbox/lib/dialog';
 import { makeSelectFilesContainer, makeSelectGlobal } from './selectors';
 
 import Footer from '../../components/Footer';
@@ -17,8 +16,21 @@ import Toolbar from '../../components/Toolbar';
 import Documents from '../../components/Documents';
 import TagInput from '../../components/TagInput';
 import ModalDocument from '../../components/ModalDocument';
+import TagModal from '../../components/TagModal';
 
-import { init, changeTags, addTag, chageText, toggleModal, getDocumentById, updateEditorState, changeModalTags, saveDocument} from './actions';
+import {
+  init,
+  changeTags,
+  addTag, chageText,
+  toggleModal,
+  getDocumentById,
+  updateEditorState,
+  changeModalTags,
+  saveDocument,
+  deleteDocument,
+  toggleTagModal,
+  openTagModal
+} from './actions';
 export class FilesContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   componentWillMount() {
@@ -27,7 +39,8 @@ export class FilesContainer extends React.Component { // eslint-disable-line rea
 
 
   render() {
-    const { documentsFetching, documents, tagsFetching, tags, selectedTags,
+    const {
+      documentsFetching, documents, tagsFetching, tags, selectedTags,
       isModalOpen,
       modalFetching,
       modalFileName,
@@ -36,7 +49,13 @@ export class FilesContainer extends React.Component { // eslint-disable-line rea
       modalOriginalContent,
       modalOwner,
       modalRecognizedContent,
-      modalEditorState } = this.props.filesContainer;
+      modalEditorState,
+
+      isTagModalOpen,
+      tagModalFetching,
+      tagModalTag,
+      tagModalDocuments
+    } = this.props.filesContainer;
     const { userName, userId } = this.props.global;
     return (
       <div>
@@ -47,7 +66,14 @@ export class FilesContainer extends React.Component { // eslint-disable-line rea
           ]}
         />
         <div className="row">
-          <Tags userName={userName} userId={userId} selectTag={this.props.addTag} tagsFetching={tagsFetching} tags={tags} />
+          <Tags
+            userName={userName}
+            userId={userId}
+            selectTag={this.props.addTag}
+            openTagModal={this.props.openTagModal}
+            tagsFetching={tagsFetching}
+            tags={tags}
+          />
           <div
             style={{ height: '100vh', paddingRight: '0rem', paddingLeft: '0rem' }}
             className="col-xs-12 col-sm-9 col-md-10 col-lg-10"
@@ -76,6 +102,16 @@ export class FilesContainer extends React.Component { // eslint-disable-line rea
           updateEditorState={this.props.updateEditorState}
           saveDocument={this.props.saveDocument}
           onChangeModalTags={this.props.changeModalTags}
+          deleteDocument={this.props.deleteDocument}
+          userId={userId}
+        />
+
+        <TagModal
+          isTagModalOpen={isTagModalOpen}
+          tagModalFetching={tagModalFetching}
+          toggleTagModal={this.props.toggleTagModal}
+          tagModalTag={tagModalTag}
+          tagModalDocuments={tagModalDocuments}
         />
         <Footer />
 
@@ -102,5 +138,8 @@ const mapDispatchToProps = {
   updateEditorState,
   changeModalTags,
   saveDocument,
+  deleteDocument,
+  toggleTagModal,
+  openTagModal
 };
 export default connect(mapStateToProps, mapDispatchToProps)(FilesContainer);

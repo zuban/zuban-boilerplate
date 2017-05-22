@@ -13,7 +13,10 @@ import {
   GET_DOCUMENT,
   UPDATE_EDITOR_STATE,
   UPDATE_MODAL_TAGS,
-  SAVE_DOCUMENT
+  SAVE_DOCUMENT,
+  DELETE_DOCUMENT,
+  TOGGLE_TAG_MODAL,
+  OPEN_TAG_MODAL,
 } from './constants';
 
 export const init = () => ({
@@ -55,4 +58,17 @@ export const changeModalTags = (tags) => ({
 export const saveDocument = (state) => ({
   type: SAVE_DOCUMENT,
   state,
+});
+
+export const deleteDocument = () => ({
+  type: DELETE_DOCUMENT,
+});
+
+export const toggleTagModal = () => ({
+  type: TOGGLE_TAG_MODAL,
+});
+
+export const openTagModal = (tag) => ({
+  type: OPEN_TAG_MODAL,
+  tag,
 });

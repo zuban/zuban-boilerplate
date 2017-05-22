@@ -1,7 +1,7 @@
 .firstBlock {
   height: 700px;
-  background: url('./landing.jpg')  no-repeat center center;
-  background-size:100% auto;
+  background: url('./rsz_1landing.png') no-repeat left top;
+  background-size: cover;
 }
 
 .firstBlockText {

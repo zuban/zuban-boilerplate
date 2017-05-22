@@ -25,3 +25,13 @@ export const UPDATE_MODAL_TAGS = 'app/FilesContainer/UPDATE_MODAL_TAGS';
 export const SAVE_DOCUMENT = 'app/FilesContainer/SAVE_DOCUMENT';
 export const SAVE_DOCUMENT_SUCCESS = 'app/FilesContainer/SAVE_DOCUMENT_SUCCESS';
 export const SAVE_DOCUMENT_ERROR = 'app/FilesContainer/SAVE_DOCUMENT_ERROR';
+
+export const DELETE_DOCUMENT = 'app/FilesContainer/DELETE_DOCUMENT';
+export const DELETE_DOCUMENT_SUCCESS = 'app/FilesContainer/DELETE_DOCUMENT_SUCCESS';
+export const DELETE_DOCUMENT_ERROR = 'app/FilesContainer/DELETE_DOCUMENT_ERROR';
+
+
+export const TOGGLE_TAG_MODAL = 'app/FilesContainer/TOGGLE_TAG_MODAL';
+export const OPEN_TAG_MODAL = 'app/FilesContainer/OPEN_TAG_MODAL';
+export const GET_TAG_MODAL_DATA_SUCCESS = 'app/FilesContainer/GET_TAG_MODAL_DATA_SUCCESS';
+export const GET_TAG_MODAL_DATA_ERROR = 'app/FilesContainer/GET_TAG_MODAL_DATA_ERROR';

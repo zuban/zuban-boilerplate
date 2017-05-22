@@ -12,6 +12,13 @@ import slinkIcon from './webpack.svg';
 
 class Tags extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
+  onClick(e, item) {
+    if (e.target.className === 'material-icons') {
+      this.props.openTagModal(item);
+    } else {
+      this.props.selectTag(item);
+    }
+  }
   getTag(item, userId) {
     let leftIcon = item.users.length > 0 ? 'group' : <span >{' '}</span>;
     let rightIcon = 'more_vert';
@@ -20,7 +27,7 @@ class Tags extends React.Component { // eslint-disable-line react/prefer-statele
       rightIcon = null;
     }
     return (<ListItem
-      onClick={() => this.props.selectTag(item)}
+      onClick={(e) => this.onClick(e, item)}
       theme={styles}
       leftIcon={leftIcon}
       caption={`#${item.value}`}

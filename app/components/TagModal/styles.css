@@ -1,0 +1,13 @@
+.classForm {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.formRow {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.body {
+  overflow: scroll;
+}

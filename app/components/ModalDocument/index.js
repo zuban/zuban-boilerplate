@@ -45,6 +45,10 @@ class ModalDocument extends React.Component { // eslint-disable-line react/prefe
     { label: 'Save', onClick: () => this.props.saveDocument(stateToHTML(this.state.editorState.getCurrentContent())) },
   ];
 
+  readOnlyActions = [
+    { label: 'Cancel', onClick: this.props.handleModalToggle },
+  ];
+
   render() {
     const {
       isModalOpen,
@@ -55,12 +59,17 @@ class ModalDocument extends React.Component { // eslint-disable-line react/prefe
       modalOriginalContent,
       modalOwner,
       handleModalToggle,
+      userId
     } = this.props;
 
+    let readOnly = false;
+    if (modalOwner) {
+      readOnly = modalOwner.id != userId;
+    }
     return (
       <Dialog
         theme={styles}
-        actions={this.actions}
+        actions={readOnly ? this.readOnlyActions: this.actions}
         active={isModalOpen}
         onEscKeyDown={handleModalToggle}
         onOverlayClick={handleModalToggle}
@@ -78,11 +87,11 @@ class ModalDocument extends React.Component { // eslint-disable-line react/prefe
               <h3>{modalFileName}</h3>
               <p>{`Upload by: ${modalOwner.userName}`}</p>
               <FormTags
-                readOnly={false} value={modalHashTags}
+                readOnly={readOnly} value={modalHashTags}
                 onChange={(tags) => this.props.onChangeModalTags(tags)}
               />
               <Editor
-                readOnly={false}
+                readOnly={readOnly}
                 editorState={this.state.editorState}
                 onEditorStateChange={(state) => this.setState({
                   editorState: state,
