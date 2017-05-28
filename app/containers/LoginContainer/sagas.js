@@ -23,10 +23,10 @@ export function* loginSaga() {
 
 function* loginUser(action) {
   try {
-    const [auth, user] = yield [call(service.login.bind(service),
+    const auth = yield call(service.login.bind(service),
       action.username,
       action.password
-    ), call(service.getUser.bind(service))];
+    );
 
     yield put({
       type: LOGIN_SUCCESS,
@@ -35,10 +35,10 @@ function* loginUser(action) {
       type: SET_AUTHENTICATED,
       username: action.username,
     });
-    service.setUserId(user.id);
+    service.setUserId(auth.id);
     yield put({
       type: UPDATE_USER,
-      userId: user.id,
+      userId: auth.id,
     });
     browserHistory.push('/home');
   } catch (error) {

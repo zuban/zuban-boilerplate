@@ -28,7 +28,10 @@ let TagModalForm = (props) => {
     deleteTag,
   } = props;
   return (
-    <form className={styles.classForm} onSubmit={handleSubmit}>
+    <form
+      className={styles.classForm}
+      onSubmit={handleSubmit}
+    >
       <div>
         <Field
           name="modalTagName"

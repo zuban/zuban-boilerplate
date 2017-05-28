@@ -5,6 +5,9 @@ import { createSelector } from 'reselect';
  */
 const selectFilesContainerDomain = () => (state) => state.get('filesContainer');
 
+
+const formsDomain = () => (state) => state.get('forms');
+
 /**
  * Direct selector to the filesContainer state domain
  */
@@ -23,6 +26,15 @@ const makeSelectFilesContainer = () => createSelector(
   selectFilesContainerDomain(),
   (substate) => substate.toJS()
 );
+
+/**
+ * Default selector used by FilesContainer
+ */
+
+const makeFormsContainer = () => createSelector(
+  formsDomain(),
+  (substate) => substate.toJS()
+);
 /**
  * Default selector used by FilesContainer
  */
@@ -36,4 +48,5 @@ const makeSelectGlobal = () => createSelector(
 export {
   makeSelectFilesContainer,
   makeSelectGlobal,
+  makeFormsContainer,
 };

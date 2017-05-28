@@ -17,6 +17,7 @@ import {
   DELETE_DOCUMENT,
   TOGGLE_TAG_MODAL,
   OPEN_TAG_MODAL,
+  SAVE_TAG_MODAL,
 } from './constants';
 
 export const init = () => ({
@@ -71,4 +72,9 @@ export const toggleTagModal = () => ({
 export const openTagModal = (tag) => ({
   type: OPEN_TAG_MODAL,
   tag,
+});
+
+export const saveTagModal = (formData) => ({
+  type: SAVE_TAG_MODAL,
+  formData,
 });

@@ -17,3 +17,11 @@
   font-weight: 300;
 }
 
+.link {
+  color: #2c59c5;
+  text-decoration: none;
+}
+.link:hover {
+  color: #2c59c5;
+  text-decoration: underline;
+}

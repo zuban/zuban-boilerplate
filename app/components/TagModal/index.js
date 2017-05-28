@@ -22,7 +22,9 @@ class TagModal extends React.Component { // eslint-disable-line react/prefer-sta
       toggleTagModal,
 
       tagModalTag,
-      tagModalDocuments
+      tagModalDocuments,
+
+      saveTagModal,
     } = this.props;
 
     return (
@@ -35,17 +37,16 @@ class TagModal extends React.Component { // eslint-disable-line react/prefer-sta
         title="Edit tag"
       >
         {tagModalFetching ? 'Loading...' :
-          <div className="row">
-              <TagModalForm
-                modalTagName={tagModalTag.title}
-                modalTagDescription={tagModalTag.description}
-
-                modalSelectedFiles={tagModalTag.modalSelectedFiles}
-                modalUsers={tagModalTag.users}
-
-                modalFiles={tagModalDocuments}
-              />
-          </div>}
+        <div className="row">
+          <TagModalForm
+            modalTagName={tagModalTag.title}
+            modalTagDescription={tagModalTag.description}
+            modalSelectedFiles={tagModalTag.modalSelectedFiles}
+            modalUsers={tagModalTag.users}
+            modalFiles={tagModalDocuments}
+            onSubmit={(formArgs) => saveTagModal(formArgs)}
+          />
+        </div>}
 
       </Dialog>
     );

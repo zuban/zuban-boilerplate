@@ -35,3 +35,6 @@ export const TOGGLE_TAG_MODAL = 'app/FilesContainer/TOGGLE_TAG_MODAL';
 export const OPEN_TAG_MODAL = 'app/FilesContainer/OPEN_TAG_MODAL';
 export const GET_TAG_MODAL_DATA_SUCCESS = 'app/FilesContainer/GET_TAG_MODAL_DATA_SUCCESS';
 export const GET_TAG_MODAL_DATA_ERROR = 'app/FilesContainer/GET_TAG_MODAL_DATA_ERROR';
+export const SAVE_TAG_MODAL = 'app/FilesContainer/SAVE_TAG_MODAL';
+export const SAVE_TAG_MODAL_SUCCESS = 'app/FilesContainer/SAVE_TAG_MODAL_SUCCESS';
+export const SAVE_TAG_MODAL_FAIL = 'app/FilesContainer/SAVE_TAG_MODAL_FAIL';

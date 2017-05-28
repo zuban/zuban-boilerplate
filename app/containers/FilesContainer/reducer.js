@@ -4,7 +4,7 @@
  *
  */
 
-import { fromJS, Map } from 'immutable';
+import {fromJS, Map} from 'immutable';
 import {
   INIT_DOCUMENTS,
   DOCUMENTS_LOADING_SUCCESS,
@@ -32,6 +32,9 @@ import {
   OPEN_TAG_MODAL,
   GET_TAG_MODAL_DATA_SUCCESS,
   GET_TAG_MODAL_DATA_ERROR,
+
+  SAVE_TAG_MODAL_SUCCESS,
+  SAVE_TAG_MODAL_FAIL,
 } from './constants';
 
 
@@ -163,7 +166,7 @@ function filesContainerReducer(state = initialState, action) {
     case GET_TAG_MODAL_DATA_SUCCESS: {
       // const selectedTags = state.get('selectedTags');
 
-      let { tag, documents } = action;
+      let {tag, documents} = action;
       const initialTagObject = Object.assign({}, tag);
 
       tag.modalSelectedFiles = documents.reduce((sum, item) => {
@@ -203,6 +206,14 @@ function filesContainerReducer(state = initialState, action) {
       return state
         .set('isTagModalOpen', true)
         .set('tagModalFetching', true);
+    }
+    case SAVE_TAG_MODAL_SUCCESS: {
+      return state
+        .set('isTagModalOpen', false)
+        .set('tagModalFetching', true)
+        .set('tagModalTag', null)
+        .set('initialTagObject', null)
+        .set('tagModalDocuments', []);
     }
     default:
       return state;

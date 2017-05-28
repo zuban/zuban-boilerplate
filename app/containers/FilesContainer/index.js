@@ -29,7 +29,8 @@ import {
   saveDocument,
   deleteDocument,
   toggleTagModal,
-  openTagModal
+  openTagModal,
+  saveTagModal,
 } from './actions';
 export class FilesContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -107,6 +108,7 @@ export class FilesContainer extends React.Component { // eslint-disable-line rea
         />
 
         <TagModal
+          saveTagModal={this.props.saveTagModal}
           isTagModalOpen={isTagModalOpen}
           tagModalFetching={tagModalFetching}
           toggleTagModal={this.props.toggleTagModal}
@@ -140,6 +142,7 @@ const mapDispatchToProps = {
   saveDocument,
   deleteDocument,
   toggleTagModal,
-  openTagModal
+  openTagModal,
+  saveTagModal,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(FilesContainer);

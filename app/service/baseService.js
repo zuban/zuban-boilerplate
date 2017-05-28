@@ -114,7 +114,21 @@ class BaseService {
             scope: 'openid',
           },
         }).then(resolve, reject);
-      });
+      })
+        .then(() => {
+          if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
+            return new Promise((resolve, reject) => {
+              this.processResponse(null, { body: { id: 309, email: 'demo@', userName: 'demo' } }).then(resolve, reject);
+            });
+          }
+          return new Promise((resolve, reject) => {
+            this.apiClient
+              .get(`hw/services/user?email=${getCookie('username')}`)
+              .end((error, response) => {
+                this.processResponse(error, response).then(resolve, reject);
+              });
+          });
+        });
     }
     return new Promise((resolve, reject) => {
       this.apiClient
@@ -122,7 +136,21 @@ class BaseService {
         .end((error, response) => {
           this.processLoginResponse(error, response).then(resolve, reject);
         });
-    });
+    })
+      .then(() => {
+        if (process.env.NODE_ENV !== 'production' && typeof window === 'object') {
+          return new Promise((resolve, reject) => {
+            this.processResponse(null, { body: { id: 309, email: 'demo@', userName: 'demo' } }).then(resolve, reject);
+          });
+        }
+        return new Promise((resolve, reject) => {
+          this.apiClient
+            .get(`hw/services/user?email=${getCookie('username')}`)
+            .end((error, response) => {
+              this.processResponse(error, response).then(resolve, reject);
+            });
+        });
+      });
   }
 
   singup(fields) {
@@ -1644,6 +1672,16 @@ class BaseService {
       this.storeRequest(request);
       request
         .on('abort', reject)
+        .end((error, response) => {
+          this.processResponse(error, response).then(resolve, reject);
+        });
+    });
+  }
+
+  saveTag(id, obj) {
+    return new Promise((resolve, reject) => {
+      this.apiClient
+        .put(`hw/services/hashTag/${id}`, obj)
         .end((error, response) => {
           this.processResponse(error, response).then(resolve, reject);
         });
