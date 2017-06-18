@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { List, ListSubHeader, ListItem } from 'react-toolbox/lib/list';
+import {List, ListSubHeader, ListItem} from 'react-toolbox/lib/list';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
 import styles from './styles.css';
 import slinkIcon from './webpack.svg';
@@ -19,6 +19,7 @@ class Tags extends React.Component { // eslint-disable-line react/prefer-statele
       this.props.selectTag(item);
     }
   }
+
   getTag(item, userId) {
     let leftIcon = item.users.length > 0 ? 'group' : <span >{' '}</span>;
     let rightIcon = 'more_vert';
@@ -36,15 +37,20 @@ class Tags extends React.Component { // eslint-disable-line react/prefer-statele
   }
 
   render() {
-    const { tagsFetching, tags, userName, userId } = this.props;
+    const {tagsFetching, tags, userName, userId} = this.props;
     return (
       <div
-        style={{ padding: '0px', background: '#f7f9fa' }}
+        style={{
+          boxShadow: '0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)',
+          padding: '0px',
+          background: 'rgb(255, 255, 255)',
+          position: 'fixed'
+        }}
         className="col-xs-12 col-sm-3 col-md-2 col-lg-2"
       >
         <List selectable>
           <ListSubHeader
-            caption={<h2 style={{ marginLeft: '9px', marginTop: '0px' }}>
+            caption={<h2 style={{marginLeft: '9px', marginTop: '0px'}}>
               Slink
               <p
                 style={{
@@ -55,8 +61,8 @@ class Tags extends React.Component { // eslint-disable-line react/prefer-statele
               >&nbsp; beta</p></h2>
             }
           />
-          {tagsFetching ? <div style={{ textAlign: 'center' }}>
-            <ProgressBar type="circular" mode="indeterminate" />
+          {tagsFetching ? <div style={{textAlign: 'center'}}>
+            <ProgressBar type="circular" mode="indeterminate"/>
           </div> :
             tags.map((item) => this.getTag(item, userId))}
         </List>

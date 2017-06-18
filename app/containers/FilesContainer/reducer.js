@@ -35,6 +35,8 @@ import {
 
   SAVE_TAG_MODAL_SUCCESS,
   SAVE_TAG_MODAL_FAIL,
+
+  DELETE_TAG_SUCCESS,
 } from './constants';
 
 
@@ -208,6 +210,14 @@ function filesContainerReducer(state = initialState, action) {
         .set('tagModalFetching', true);
     }
     case SAVE_TAG_MODAL_SUCCESS: {
+      return state
+        .set('isTagModalOpen', false)
+        .set('tagModalFetching', true)
+        .set('tagModalTag', null)
+        .set('initialTagObject', null)
+        .set('tagModalDocuments', []);
+    }
+    case DELETE_TAG_SUCCESS: {
       return state
         .set('isTagModalOpen', false)
         .set('tagModalFetching', true)

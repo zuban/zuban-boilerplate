@@ -163,6 +163,16 @@ class BaseService {
     });
   }
 
+  deleteTag(id) {
+    return new Promise((resolve, reject) => {
+      this.apiClient
+        .delete(`hw/services/hashTag/${id}`)
+        .end((error, response) => {
+          this.processResponse(error, response).then(resolve, reject);
+        });
+    });
+  }
+
   deleteDocumentById(id) {
     return new Promise((resolve, reject) => {
       this.apiClient

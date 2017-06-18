@@ -51,17 +51,17 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
             </p>
             <div className={`row ${styles.listLanding}`}>
               <div className="col-sm-6">
-                <Link className={styles.link} to={'http://www.neosmartpen.com/'}>Neo Smartpen</Link>&nbsp;
-                <Link
+                <a className={styles.link} href={'http://www.neosmartpen.com/'}>Neo Smartpen</a>&nbsp;
+                <a
                   className={styles.link}
-                  to={'https://neosmartpen.freshdesk.com/support/solutions/articles/14000055348-faq'}
+                  href={'https://neosmartpen.freshdesk.com/support/solutions/articles/14000055348-faq'}
                 >(Neo Smartpen
-                  FAQ)</Link>
+                  FAQ)</a>
               </div>
               <div className="col-sm-6">
-                <Link className={styles.link} to={'http://www.moleskine.com/microsites/smartwritingset'}>Moleskine
-                  Pen+</Link>&nbsp;
-                <Link className={styles.link} to={'http://www.moleskine.com/microsites/smartwritingset/description'}>(description)</Link>
+                <a className={styles.link} href={'http://www.moleskine.com/microsites/smartwritingset'}>Moleskine
+                  Pen+</a>&nbsp;
+                <a className={styles.link} href={'http://www.moleskine.com/microsites/smartwritingset/description'}>(description)</a>
               </div>
             </div>
           </div>
@@ -77,10 +77,10 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                 </ul>
                 <ol>
                   <li><h3 className={styles.listLanding}>Register an adobe cloud id at&nbsp;
-                    <Link className={styles.link} to={'https://accounts.adobe.com/'}>https://accounts.adobe.com</Link>
+                    <a className={styles.link} href={'https://accounts.adobe.com/'}>https://accounts.adobe.com</a>
                   </h3></li>
                   <li><h3 className={styles.listLanding}>Download desktop sync&nbsp;
-                    <Link className={styles.link} to={'https://www.adobe.com/creativecloud/desktop-app.html'}>https://www.adobe.com/creativecloud/desktop-app.html</Link>. Install it, run and login</h3></li>
+                    <a className={styles.link} href={'https://www.adobe.com/creativecloud/desktop-app.html'}>https://www.adobe.com/creativecloud/desktop-app.html</a>. Install it, run and login</h3></li>
                   <li><h3 className={styles.listLanding}>In NeoNotes app:</h3>
                     <ol>
                       <li><h3 className={styles.listLanding}>Go to Settings {'=>'} Authentication center, add Adobe

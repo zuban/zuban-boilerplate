@@ -38,3 +38,6 @@ export const GET_TAG_MODAL_DATA_ERROR = 'app/FilesContainer/GET_TAG_MODAL_DATA_E
 export const SAVE_TAG_MODAL = 'app/FilesContainer/SAVE_TAG_MODAL';
 export const SAVE_TAG_MODAL_SUCCESS = 'app/FilesContainer/SAVE_TAG_MODAL_SUCCESS';
 export const SAVE_TAG_MODAL_FAIL = 'app/FilesContainer/SAVE_TAG_MODAL_FAIL';
+export const DELETE_TAG = 'app/FilesContainer/DELETE_TAG';
+export const DELETE_TAG_SUCCESS = 'app/FilesContainer/DELETE_TAG_SUCCESS';
+export const DELETE_TAG_FAIL = 'app/FilesContainer/DELETE_TAG_FAIL';

@@ -18,7 +18,13 @@ import {
   TOGGLE_TAG_MODAL,
   OPEN_TAG_MODAL,
   SAVE_TAG_MODAL,
+  DELETE_TAG
 } from './constants';
+
+import {
+  SET_LOGOUT
+} from '../App/constants';
+
 
 export const init = () => ({
   type: INIT_DOCUMENTS,
@@ -77,4 +83,12 @@ export const openTagModal = (tag) => ({
 export const saveTagModal = (formData) => ({
   type: SAVE_TAG_MODAL,
   formData,
+});
+
+export const deleteTag = () => ({
+  type: DELETE_TAG,
+});
+
+export const logout = () => ({
+  type: SET_LOGOUT,
 });

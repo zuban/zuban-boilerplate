@@ -28,6 +28,10 @@ import {
   SAVE_TAG_MODAL,
   SAVE_TAG_MODAL_SUCCESS,
   SAVE_TAG_MODAL_FAIL,
+
+  DELETE_TAG,
+  DELETE_TAG_SUCCESS,
+  DELETE_TAG_FAIL,
 } from './constants';
 import { makeSelectFilesContainer, makeFormsContainer } from './selectors';
 import { Service } from '../../service/service';
@@ -48,6 +52,11 @@ export function* saveTagModalSaga() {
 
 export function* updateOnChangeTagsSaga() {
   const fetchWatcher = yield takeLatest(CHANGE_TAGS, getDocumentsAndTags);
+  yield take(LOCATION_CHANGE);
+  yield cancel(fetchWatcher);
+}
+export function* deleteTagSaga() {
+  const fetchWatcher = yield takeLatest(DELETE_TAG, deleteTag);
   yield take(LOCATION_CHANGE);
   yield cancel(fetchWatcher);
 }
@@ -135,6 +144,21 @@ function* saveTagModal(action) {
   } catch (error) {
     yield put({
       type: SAVE_TAG_MODAL_FAIL,
+      error: error.message,
+    });
+  }
+}
+
+function* deleteTag(action) {
+  try {
+    const { initialTagObject } = yield select(makeSelectFilesContainer());
+    yield call(service.deleteTag.bind(service), initialTagObject.id );
+    yield put({
+      type: DELETE_TAG_SUCCESS,
+    });
+  } catch (error) {
+    yield put({
+      type: DELETE_TAG_FAIL,
       error: error.message,
     });
   }
@@ -232,4 +256,5 @@ export default [
   deleteDocumentSaga,
   openTagSaga,
   saveTagModalSaga,
+  deleteTagSaga
 ];

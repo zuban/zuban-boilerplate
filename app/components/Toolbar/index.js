@@ -3,7 +3,7 @@
 * Toolbar
 *
 */
-
+import debounce from 'lodash/debounce';
 import React from 'react';
 // import styled from 'styled-components';
 import AppBar from 'react-toolbox/lib/app_bar';
@@ -18,7 +18,7 @@ class Toolbar extends React.Component { // eslint-disable-line react/prefer-stat
   render() {
     return (
       <AppBar title="Documents view">
-        <Input onChange={this.props.onChageText} theme={inputStyles} icon="search" type="text" name="name" />
+        <Input onChange={debounce(this.props.onChageText, 300)} theme={inputStyles} icon="search" type="text" name="name" />
         <Navigation style={{ color: 'rgb(255, 255, 255)' }}type="horizontal" >
 
           <IconMenu theme={styles} icon="more_vert" position="topRight" menuRipple>
@@ -26,7 +26,7 @@ class Toolbar extends React.Component { // eslint-disable-line react/prefer-stat
             <MenuItem value="help" icon="help" caption="Help" />
             <MenuItem value="about" icon="about" caption="About" />
             <MenuDivider />
-            <MenuItem value="signout" icon="exit_to_app" caption="Logout" />
+            <MenuItem value="signout" onClick={this.props.logout}icon="exit_to_app" caption="Logout" />
           </IconMenu>
           <Link to={'/upload'}>
             <Button icon="file_upload" label="Upload" raised />

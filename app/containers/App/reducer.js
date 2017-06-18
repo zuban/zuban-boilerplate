@@ -28,10 +28,14 @@ function globalReducer(state = initialState, action) {
       return state
         .set('isAuthenticated', true)
         .set('userName', action.username);
-    case SET_LOGOUT:
+    case SET_LOGOUT: {
+      service.logout();
+
       return state
         .set('isAuthenticated', false)
-        .set('userName', null);
+        .set('userName', null)
+        .set('userId', null);
+    }
     case UPDATE_USER:
       return state
         .set('userId', action.userId);

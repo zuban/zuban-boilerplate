@@ -8,8 +8,8 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
+import { browserHistory } from 'react-router';
 import { makeSelectFilesContainer, makeSelectGlobal } from './selectors';
-
 import Footer from '../../components/Footer';
 import Tags from '../../components/Tags';
 import Toolbar from '../../components/Toolbar';
@@ -31,6 +31,8 @@ import {
   toggleTagModal,
   openTagModal,
   saveTagModal,
+  deleteTag,
+  logout,
 } from './actions';
 export class FilesContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -55,7 +57,7 @@ export class FilesContainer extends React.Component { // eslint-disable-line rea
       isTagModalOpen,
       tagModalFetching,
       tagModalTag,
-      tagModalDocuments
+      tagModalDocuments,
     } = this.props.filesContainer;
     const { userName, userId } = this.props.global;
     return (
@@ -76,10 +78,18 @@ export class FilesContainer extends React.Component { // eslint-disable-line rea
             tags={tags}
           />
           <div
-            style={{ height: '100vh', paddingRight: '0rem', paddingLeft: '0rem' }}
-            className="col-xs-12 col-sm-9 col-md-10 col-lg-10"
+            style={{ height: '100vh', paddingRight: '0rem', paddingLeft: '0rem',position: 'absolute'  }}
+            className="col-xs-12 offset-md-2 col-sm-9 col-md-10 col-lg-10"
           >
-            <Toolbar onChageText={this.props.chageText} />
+            <Toolbar
+              logout={() => {
+                this.props.logout()
+                  .then(() => {
+                    browserHistory.push('/');
+                  });
+              }}
+              onChageText={this.props.chageText}
+            />
             <TagInput tags={selectedTags} onChangeTags={this.props.changeTags} />
             <Documents
               openDocument={this.props.getDocumentById}
@@ -109,6 +119,7 @@ export class FilesContainer extends React.Component { // eslint-disable-line rea
 
         <TagModal
           saveTagModal={this.props.saveTagModal}
+          deleteTag={this.props.deleteTag}
           isTagModalOpen={isTagModalOpen}
           tagModalFetching={tagModalFetching}
           toggleTagModal={this.props.toggleTagModal}
@@ -144,5 +155,7 @@ const mapDispatchToProps = {
   toggleTagModal,
   openTagModal,
   saveTagModal,
+  deleteTag,
+  logout,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(FilesContainer);
