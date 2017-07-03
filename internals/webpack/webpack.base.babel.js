@@ -22,7 +22,7 @@ module.exports = (options) => ({
       exclude: /node_modules/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: 'css-loader?modules&localIdentName=[name]___[hash:base64:5]',
+        use: 'css-loader?localIdentName=[name]___[hash:base64:5]',
       }),
     }, {
       // Do not transform vendor's CSS with CSS-modules
