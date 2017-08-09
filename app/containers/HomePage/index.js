@@ -15,7 +15,16 @@ import zubov from './zubov.png';
 import rumyantsev from './r1.png';
 import matorin from './matorin.jpg';
 import css from './home.css';
-export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+  constructor(...props) {
+    super(...props);
+    this.state = {
+      message: 'Отправить',
+      newsMessage: 'Подписаться',
+    };
+  }
+
   render() {
     return (
       <div style={{ height: '100%' }}>
@@ -32,7 +41,8 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
               }}
             >
               <h1 style={{ overflowX: 'auto' }}>Мы "прокачаем" тебя для работы в ведущих ИТ компаниях России</h1>
-              <h5 style={{ margin: '30px' }} className="wow fadeIn text-normal wow fadeIn">Мы помогаем ИТ компаниям растить правильные компетенции у кандидатов</h5>
+              <h5 style={{ margin: '30px' }} className="wow fadeIn text-normal wow fadeIn">Мы помогаем ИТ компаниям
+                растить правильные компетенции у кандидатов</h5>
               <a href="#mission" className="btn btn-primary-outline btn-xl page-scroll wow fadeInUp m-t-3">Я хочу стать
                 разработчиком</a>
             </div>
@@ -70,7 +80,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                   <a
                     className="nav-link page-scroll" data-toggle="modal" title="A free Bootstrap theme"
                     href="/login"
-                  >Войти/Регистрация</a>
+                  >Войти/Зарегистрироваться</a>
                 </li>
               </ul>
             </div>
@@ -81,8 +91,6 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
             <div className="row">
               <div className="col-lg-12 text-center">
                 <h2 className="section-heading text-primary">Наша команда</h2>
-                <p className="section-subheading text-muted wide-space text-center text-uppercase">Преподаватели и
-                  руководители</p>
               </div>
             </div>
             <div className="row">
@@ -103,38 +111,14 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                   />
                   <h4 style={{ marginTop: '20px', textAlign: 'center' }}>Дмитрий Румянцев</h4>
                   <p className="section-heading text-primary text-center">Операционный директор</p>
-                  <p style={{ fontWeight: '300' }}>Закончил Ленинградский Государственный Университет по специальности «Математика» в 1992 году.
-                    В 1995 году закончил аспирантуру в Севере-Западном Заочном Политехническом Институте по специальности «Теория Систем».
+                  <p style={{ fontWeight: '300' }}>Закончил Ленинградский Государственный Университет по специальности
+                    «Математика» в 1992 году.
+                    В 1995 году закончил аспирантуру в Севере-Западном Заочном Политехническом Институте по
+                    специальности «Теория Систем».
                     Профессиональную карьеру начал в 1992 году.
-                    В последующие 25 лет работал в  сфере ИТ технологий (Израиль, Италия), телекоммуникаций (Австрия, Россия, Украина),
-                    банковских технологий (Россия, Израиль).
-                    В АО «Сбертех» работает с 2014 года. Начальник отдела управления рисками и инцидентами.
-                  </p>
-                </div>
-              </div>
-              <div className="col-sm-3">
-                <div className="team-member">
-                  <img
-                    style={{
-                      borderRadius: '50%',
-                      display: 'block',
-                      maxWidth: '100%',
-                      maxHeight: '210px',
-                      height: 'auto',
-                      margin: '0 auto',
-                      border: '7px solid #fff',
-                    }}
-                    src={matorin}
-                    className="img-responsive img-circle" alt=""
-                  />
-                  <h4 style={{ marginTop: '20px', textAlign: 'center' }}>Александр Маторин</h4>
-                  <p className="section-heading text-primary text-center">Преподаватель</p>
-                  <p style={{ fontWeight: '300' }}>Закончил Саратовский государственный университет им. Н.Г. Чернышевского,
-                    факультет компьютерных наук и информационных технологий по специальности “компьютерная безопасность” в 2010 году.
-                    Работает в компании АО «Сбертех» в должности главного руководителя разработки.
-                    Отвечает за техническую сторону систем управления рисками на финансовых рынках.
-                    Преподает в МФТИ на кафедре БИТ курсы по Java и по распределённым системам.
-                    Выступает на крупнейших российских и международных Java конференциях (JPoint, Joker, JBreak, JEEConf).
+                    В последующие 25 лет работал в сфере ИТ технологий (Израиль, Италия), телекоммуникаций (Австрия,
+                    Россия, Украина),
+                    банковских технологий (Россия, Израиль). Отвечает за стратегическое и операционное управление.
                   </p>
                 </div>
               </div>
@@ -155,13 +139,44 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                   />
                   <h4 style={{ marginTop: '20px', textAlign: 'center' }}>Влад Яковлев</h4>
                   <p className="section-heading text-primary text-center">Академический директор</p>
-                  <p style={{ fontWeight: '300' }}>В 1999 г. закончил Финансовый институт (г. Ташкент) по специальности «Финансы и Кредит». В 2010 году получил степень MBA в Университете штата Калифорния (США) по специальности
-                    «Стратегическое управление».
+                  <p style={{ fontWeight: '300' }}>В 1999 г. закончил Финансовый институт (г. Ташкент) по специальности
+                    «Финансы и Кредит». В 2010 году получил степень MBA в Университете штата Калифорния (США) по
+                    специальности «Стратегическое управление».
                     Профессиональную деятельность начал в 1994 году. В последующие 20 лет работал в производственной
-                    (Nestle) и банковской (Deutsche Bank и АО «Сбертех») сфере. В проекте отвечает за создание учебных курсов,
-                    формирование учебных планов, взаимодействие с компаниями-партнерами и ВУЗами.</p>
+                    (Nestle) и банковской (Deutsche Bank и АО «Сбертех») сфере. Отвечает за создание учебных
+                    курсов, формирование учебных планов, взаимодействие с компаниями-партнерами и ВУЗами.</p>
                 </div>
               </div>
+              <div className="col-sm-3">
+                <div className="team-member">
+                  <img
+                    style={{
+                      borderRadius: '50%',
+                      display: 'block',
+                      maxWidth: '100%',
+                      maxHeight: '210px',
+                      height: 'auto',
+                      margin: '0 auto',
+                      border: '7px solid #fff',
+                    }}
+                    src={matorin}
+                    className="img-responsive img-circle" alt=""
+                  />
+                  <h4 style={{ marginTop: '20px', textAlign: 'center' }}>Александр Маторин</h4>
+                  <p className="section-heading text-primary text-center">Преподаватель</p>
+                  <p style={{ fontWeight: '300' }}>Закончил Саратовский государственный университет им. Н.Г.
+                    Чернышевского,
+                    факультет компьютерных наук и информационных технологий по специальности “компьютерная безопасность”
+                    в 2010 году.
+                    Работает в компании АО «Сбертех» в должности главного руководителя разработки.
+                    Более 10ти лет опыта коммерческой разработки ПО.
+                    Преподает в МФТИ на кафедре БИТ курсы по Java и распределённым системам.
+                    Спикер крупнейших российских и международных Java конференций (JPoint, Joker, JBreak,
+                    JEEConf). Преподаватель курса JAVA.
+                  </p>
+                </div>
+              </div>
+
               <div className="col-sm-3">
                 <div className="team-member">
                   <img
@@ -183,8 +198,9 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                   <p style={{ fontWeight: '300' }}>
                     Закончил Московский Физико-Технический Институт, факультет инноваций и высоких технологий.
                     Один из первых выпусников кафедры банковских информационных технологий Сбербанка.
-                    С 2015 начал профессиональную деятельность АО «Сбертех» как frontend разработчик в «Платформе Поддержки Развития Бизнеса» (ППРБ).
-                    В 2017 продолжил карьеру в компании Luxoft, в должности senior developer.
+                    С 2015 начал профессиональную деятельность в АО «Сбертех» как frontend разработчик в «Платформе
+                    Поддержки Развития Бизнеса» (ППРБ).
+                    В 2017 продолжил карьеру в компании Luxoft, в должности senior developer. Преподает курс по UI.
                   </p>
                 </div>
               </div>
@@ -192,7 +208,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
             <div className="row" style={{ margin: '0 auto' }}>
 
               <h4>Хочешь у нас преподавать? Пройди по этой <a
-                href="/login-mentor"
+                href="/signup-teacher"
                 className="interted-education text-primary"
               >ссылке.</a>
                 &nbsp; Мы с тобой свяжемся.</h4>
@@ -380,7 +396,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                       КАК мы это делаем?
                     </h4>
                     <ul style={{ color: 'white' }}>
-                      <li><a className="interted-education">
+                      <li><a className="interted-education" href="/education">
                         С помощью концепции перевернутого обучения</a>
                       </li>
                     </ul>
@@ -393,173 +409,12 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
         <section id="partners" className="bg-alt" style={{ minHeight: '50px', padding: '50px 0' }}>
           <div className="container-fluid">
             <h2 className="text-primary text-center">Наши партнеры</h2>
-            <div className="row">
-              <div className="col-10 offset-1">
-                <div className="row">
-                  <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 text-center">
-                    <div
-                      className="card"
-                      style={{ marginTop: '10px', backgroundColor: '#ffffff', border: '0px solid rgba(0,0,0,.125)' }}
-                    >
-                      <img src="http://kazhdysboy.ru/i/logo/Alfa-bank-logo.png" className="img-fluid" />
-                      <div className="card-img-overlay">
-                        <h4 className="card-title text-center">
-                          <a
-                            className="text-light"
-                            data-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample3.jpg"
-                          ></a>
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 text-center">
-                    <div
-                      className="card"
-                      style={{
-                        margin: '4px auto',
-                        maxWidth: '130px',
-                        backgroundColor: '#ffffff',
-                        border: '0px solid rgba(0,0,0,.125)',
-                      }}
-                    >
-                      <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Yandex_logo_ru.svg/1024px-Yandex_logo_ru.svg.png"
-                        className="img-fluid"
-                      />
-                      <div className="card-img-overlay">
-                        <h4 className="card-title text-center">
-                          <a
-                            className="text-light" href="#galleryModal" data-toggle="modal"
-                            data-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample3.jpg"
-                          ></a>
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 text-center">
-                    <div
-                      className="card card-inverse"
-                      style={{ marginTop: '15px', backgroundColor: '#ffffff', border: '0px solid rgba(0,0,0,.125)' }}
-                    >
-                      <img
-                        src="https://upload.wikimedia.org/wikipedia/en/e/e9/Kaspersky_Lab_logo.svg"
-                        className="img-fluid"
-                      />
-                      <div className="card-img-overlay">
-                        <h4 className="card-title text-center">
-                          <a
-                            className="text-light" href="#galleryModal" data-toggle="modal"
-                            data-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample3.jpg"
-                          ></a>
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 text-center">
-                    <div
-                      className="card"
-                      style={{
-                        margin: '10px auto',
-                        maxWidth: '150px',
-                        backgroundColor: '#ffffff',
-                        border: '0px solid rgba(0,0,0,.125)',
-                      }}
-                    >
-                      <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/ABBYY_logo.svg/2000px-ABBYY_logo.svg.png"
-                        className="img-fluid"
-                      />
-                      <div className="card-img-overlay">
-                        <h4 className="card-title text-center">
-                          <a
-                            className="text-light" href="#galleryModal" data-toggle="modal"
-                            data-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample3.jpg"
-                          ></a>
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 text-center">
-                    <div
-                      className="card"
-                      style={{ marginTop: '8px', backgroundColor: '#ffffff', border: '0px solid rgba(0,0,0,.125)' }}
-                    >
-                      <img src="http://www.sberbank.kz/images/sber-logo.png" className="img-fluid" />
-                      <div className="card-img-overlay">
-                        <h4 className="card-title text-center">
-                          <a
-                            className="text-light" href="#galleryModal" data-toggle="modal"
-                            data-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample35.jpg"
-                          ></a>
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 text-center">
-                    <div
-                      className="card"
-                      style={{
-                        margin: '4px auto',
-                        maxWidth: '130px',
-                        backgroundColor: '#ffffff',
-                        border: '0px solid rgba(0,0,0,.125)',
-                      }}
-                    >
-                      <img
-                        src="https://www.luxoft.com/upload/medialibrary/d73/luxoft_logo_company_500.png"
-                        className="img-fluid"
-                      />
-                      <div className="card-img-overlay">
-                        <h4 className="card-title text-center">
-                          <a
-                            className="text-light" href="#galleryModal" data-toggle="modal"
-                            data-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample16.jpg"
-                          ></a>
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <h2 className="text-primary text-center " style={{ marginTop: '2rem', marginBottom: '1rem' }}>Мы сотрудничаем
-              с вузами</h2>
-            <div className="row">
-              <div className="col-10 offset-1">
-                <div className="row">
-                  <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 text-center">
-                  </div>
-                  <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 text-center">
-                  </div>
-                  <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 text-center">
-                    <div
-                      className="card card-inverse"
-                      style={{ backgroundColor: '#ffffff', border: '0px solid rgba(0,0,0,.125)' }}
-                    >
-                      <img
-                        src="https://mipt.ru/upload/medialibrary/c92/emblema_mfti.png"
-                        className="img-fluid"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 text-center">
-                    <div
-                      className="card"
-                      style={{ backgroundColor: '#ffffff', border: '0px solid rgba(0,0,0,.125)' }}
-                    >
-                      <img
-                        src="http://toplogos.ru/images/logo-mgu.png"
-                        className="img-fluid" style={{ maxHeight: '100px', maxWidth: '100px' }}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 text-center">
-                  </div>
-                  <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 text-center">
-                  </div>
-                </div>
-              </div>
+            <div className="row text-center">
+              <a
+                href="/signup-employer"
+                className="btn btn-primary-outline btn-lg wow flipInX text-uppercase"
+                style={{ margin: '20px auto' }}
+              >Стать партнером</a>
             </div>
           </div>
           <br />
@@ -593,31 +448,27 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                   />
 
                   <div className="text-center edhunter-courses-block">
-                    <h5 className="mt-0 text-primary" style={{ marginTop: '10px !important' }}>Длительность курса: 3
-                      месяца</h5>
+                    <h5 className="mt-0 text-primary" style={{ marginTop: '10px !important' }}>Длительность курса: 5
+                      месяцев</h5>
                     <div className="nav flex-column text-center">
-                      <a
-                        className="nav-link"
-
-                      >Модуль 1.
-                        Введение в язык программирования “Java”
+                      <a className="nav-link">Sprint 1. Знакомство с платформой Java. Изучение основных синтаксических конструкций языка.</a>
+                      <a className="nav-link">Sprint 2. Классы в Java, основные пакеты(lang, util, io). ООП</a>
+                      <a className="nav-link">Sprint 3. Структуры данных в Java. Основные интерфейсы коллекций и их реализации.
                       </a>
-                      <a className="nav-link">Модуль 2.
-                        Переменные, типы данных, операторы
+                      <a className="nav-link">Sprint 4. Сборка проекта. Maven. Тестирование с помощью JUnit.
                       </a>
-                      <a
-                        className="nav-link"
-
-                      >Модуль
-                        4. Циклы</a>
-                      <a
-                        className="nav-link"
-
-                      >Модуль 5.
-                        Строки, массивы одномерные, многомерные</a>
-                      <a className="nav-link">Модуль
-                        6.Методы (на примере статических методов)</a>
+                      <a className="nav-link">Sprint 5. Обработка исключений. Иерархия исключений.</a>
+                      <a className="nav-link">Sprint 6. Generics. Параметризация классов, методов, переменных.</a>
+                      <a className="nav-link">Sprint 7. Reflection. Пакет java.lang.reflect</a>
+                      <a className="nav-link">Sprint 8. Загрузка классов. Класслоадеры, их иерархия.</a>
+                      <a className="nav-link">Sprint 9. Java 8. Дефолтные методы.</a>
+                      <a className="nav-link">Sprint 10. Введение в многопоточность.</a>
+                      <a className="nav-link">Sprint 11. Java memory model.</a>
+                      <a className="nav-link">Sprint 12. Пакет java.util.concurrent.</a>
+                      <a className="nav-link">Sprint 13. Сериализация.  </a>
+                      <a className="nav-link">Sprint 14. JVM. Оптимизации JIT.</a>
                     </div>
+                    <a className="interted-education  text-primary" style={{ marginTop: '10px !important' }} href="/java">Подробнее</a>
                   </div>
                 </div>
               </div>
@@ -640,35 +491,22 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                   />
                   <div className="text-center edhunter-courses-block">
                     <h5 className="mt-0 text-primary" style={{ marginTop: '10px !important', color: 'red!important' }}>
-                      КУРС
-                      В
-                      РАЗРАБОТКЕ</h5>
+                      Javascript + React</h5>
+                    <h5 className="mt-0" style={{ marginTop: '10px !important', color: 'red' }}>
+                      Курс в разработке</h5>
                     <div className="nav flex-column text-center">
-                      <a
-                        className="nav-link"
-
-                      >Модуль 1.
-                        Введение в Web-технологии. Структура HTML</a>
-                      <a className="nav-link">Модуль 2.
-                        Форматирование текста при помощи HTML и CSS</a>
-                      <a
-                        className="nav-link"
-
-                      >Модуль
-                        3. Списки. CSS отступы и поля.
+                      <a className="nav-link">Sprint 1. Кросс-браузерная верстка HTML и CSS.</a>
+                      <a className="nav-link">Sprint 2. Язык программирования JavaScript.</a>
+                      <a className="nav-link">Sprint 3. JavaScript в браузере и Web API.
                       </a>
-                      <a
-                        className="nav-link"
-
-                      >Модуль 4.
-                        Графика в web-дизайне. Оптимизация графики. Гиперссылки. Принципы навигации
-                        web-сайта.</a>
-                      <a className="nav-link">Модуль
-                        5. Таблицы.</a>
-                      <a className="nav-link">Модуль
-                        6. Позиционирование. Верстка web-страниц блоками</a>
-                      <a className="nav-link">Модуль
-                        7. Формы. Фреймы</a>
+                      <a className="nav-link">Sprint 4. Библиотека React.
+                      </a>
+                      <a className="nav-link">Sprint 5. Создание одностраничного веб-приложения.</a>
+                      <a className="nav-link">Sprint 6. AJAX.</a>
+                      <a className="nav-link">Sprint 7. Композиция компонентов. JSX.</a>
+                      <a className="nav-link">Sprint 8. Роутинг в приложении.</a>
+                      <a className="nav-link">Sprint 9. Шаблоны MVC, MVVM.</a>
+                      <a className="nav-link">Sprint 10. Шаблоны pub/sub, observer, mediator.</a>
                     </div>
                   </div>
                 </div>
@@ -684,14 +522,12 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                     boxShadow: '0px 0px 24px 0px rgba(0,0,0,0.12)',
                   }}
                 >
-
                   <img
                     style={{ marginTop: '15px', height: '134px' }} className="card-img-top img-fluid wow fadeIn"
                     data-wow-delay=".1s"
                     src="http://cdn.thinglink.me/api/image/723214075936374785/1024/10/scaletowidth"
                     alt="Card image cap"
                   />
-
                   <div className="text-center edhunter-courses-block">
                     <h5 className="mt-0 text-primary" style={{ marginTop: '10px!important', color: 'red!important' }}>КУРС
                       В
@@ -703,7 +539,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                       >Модуль 1.
                         Введение в язык программирования “Java”
                       </a>
-                      <a className="nav-link" >Модуль 2.
+                      <a className="nav-link">Модуль 2.
                         Переменные, типы данных, операторы
                       </a>
                       <a
@@ -716,7 +552,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
 
                       >Модуль 5.
                         Строки, массивы одномерные, многомерные</a>
-                      <a className="nav-link" >Модуль
+                      <a className="nav-link">Модуль
                         6.Методы (на примере статических методов)</a>
                     </div>
                   </div>
@@ -739,7 +575,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                     <li><b>12</b> Лекций</li>
                     <li><b>1</b> Компания</li>
                   </ul>
-                  <a className="signup" href="/login">Регистрация</a>
+                  <a className="signup" href="/signup">Зарегистрироваться</a>
                 </div>
               </div>
               <div className="col-lg-3 col-md-3">
@@ -755,7 +591,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                     <li><b>12</b> Лекций</li>
                     <li><b>1</b> Резюме</li>
                   </ul>
-                  <a className="signup" href="/login">Регистрация</a>
+                  <a className="signup" href="/signup">Зарегистрироваться</a>
                 </div>
               </div>
               <div className="col-lg-3 col-md-3">
@@ -769,7 +605,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                     <li><b>1</b> Резюме</li>
                     <li><b>5</b> Собеседований</li>
                   </ul>
-                  <a className="signup" href="/login">Регистрация</a>
+                  <a className="signup" href="/signup">Зарегистрироваться</a>
                 </div>
               </div>
               <div className="col-lg-3 col-md-3">
@@ -783,7 +619,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                     <li><b>3</b> Резюме</li>
                     <li><b>10</b> Собеседований</li>
                   </ul>
-                  <a className="signup" href="http://www.freshdesignweb.com">Регистрация</a>
+                  <a className="signup" href="http://www.freshdesignweb.com">Зарегистрироваться</a>
                 </div>
               </div>
             </div>
@@ -987,16 +823,13 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
           <div className="container text-center">
             <div className="call-to-action">
               <h2 className="text-primary">Хотите стать партнером проекта?</h2>
-              <p className="wide-space text-center text-uppercase">Партнерская программа - это возможность заработать,
-                предлагая наши образовательные продукты вашей аудитории.
-
-                Партнеры получают 20% от каждой оплаты пользователей, пришедших к нам с вашей площадки. Участники
-                партнерской программы получают уникальный идентификатор, который позволяет нашей системе понять, что
-                пользователь пришел от вас.
-
-                Пишите на почту serzbv@gmail.com</p>
+              <p className="wide-space text-center text-uppercase">Партнерская программа - это возможность в кратчайшие
+                сроки найти и прособеседовать лучших молодых специалистов
+                с необходимыми вашей компании компетенциями. Мы также готовы создать учебный курс по вашему заказу и
+                предлагаем вам воспользоваться опцией “таргетированный отбор”.
+              </p>
               <a
-                href="/login-company"
+                href="/signup-employer"
                 className="btn btn-primary-outline btn-lg wow flipInX text-uppercase"
               >Для компаний</a>
             </div>
@@ -1012,29 +845,30 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
                 <p>Предложите курс, или просто оставьте контакты, мы с Вами свяжемся.</p>
               </div>
               <div className="col-lg-10 offset-lg-1 text-center">
-                <form className="contact-form row">
+                <form className="contact-form row" method="POST" action="api/landingContact">
                   <div className="col-md-4">
                     <label></label>
-                    <input type="text" className="form-control" placeholder="Имя" />
+                    <input type="text" className="form-control" name="name" placeholder="Имя" />
                   </div>
                   <div className="col-md-4">
                     <label></label>
-                    <input type="text" className="form-control" placeholder="Почта" />
+                    <input type="text" className="form-control" name="email" placeholder="Почта" />
                   </div>
                   <div className="col-md-4">
                     <label></label>
-                    <input type="text" className="form-control" placeholder="Телефон" />
+                    <input type="tel" className="form-control" name="phone" placeholder="Телефон" />
                   </div>
                   <div className="col-md-12">
                     <label></label>
-                    <textarea className="form-control" rows="9" placeholder="Ваше сообщение" />
+                    <textarea className="form-control" rows="9" name="message" placeholder="Ваше сообщение" />
                   </div>
-                  <div className="col-md-4 offset-md-4">
+                  <div className="col-md-6 offset-md-3">
                     <label></label>
                     <button
-                      type="button" data-toggle="modal" data-target="#alertModal"
+                      onClick={() => this.setState({ message: 'Спасибо! Мы с Вами свяжемся.' })}
+                      type="submit" data-toggle="modal" data-target="#feedbackModal"
                       className="btn btn-primary btn-block btn-lg"
-                    >Отправить <i
+                    >{this.state.message} <i
                       className="ion-android-arrow-forward"
                     ></i>
                     </button>
@@ -1048,36 +882,39 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
           <div className="container">
             <div className="row">
               <div className="col-6 col-sm-3">
-                <h6 className="text-uppercase">EdHunter</h6>
-                <ul className="list-unstyled">
-                  <li><a
-                    href="https://medium.com/@bootply/bootstrap-4-whats-new-visual-guide-c84dd81d8387"
-                    target="ext"
-                  >Новости</a></li>
-                  <li><a href="http://codeply.com/tagged/bootstrap-4" target="ext">Запись на курс</a></li>
-                  <li><a href="http://getbootstrap.com" target="ext">Предложить идею</a></li>
-                </ul>
+                {/* <h6 className="text-uppercase">EdHunter</h6>*/}
+                {/* <ul className="list-unstyled">*/}
+                {/* <li><a*/}
+                {/* href="https://medium.com/@bootply/bootstrap-4-whats-new-visual-guide-c84dd81d8387"*/}
+                {/* target="ext"*/}
+                {/* >Новости</a></li>*/}
+                {/* <li><a href="http://codeply.com/tagged/bootstrap-4" target="ext">Запись на курс</a></li>*/}
+                {/* <li><a href="http://getbootstrap.com" target="ext">Предложить идею</a></li>*/}
+                {/* </ul>*/}
               </div>
               <div className="col-6 col-sm-3 column">
-                <h6 className="text-uppercase">О нас</h6>
-                <ul className="list-unstyled">
-                  <li><a href="#">Контакты</a></li>
-                  <li><a href="#">Условия обучения</a></li>
-                  <li><a href="#">Расположение офиса</a></li>
-                </ul>
+                {/* <h6 className="text-uppercase">О нас</h6>*/}
+                {/* <ul className="list-unstyled">*/}
+                {/* <li><a href="#">Контакты</a></li>*/}
+                {/* <li><a href="#">Условия обучения</a></li>*/}
+                {/* <li><a href="#">Расположение офиса</a></li>*/}
+                {/* </ul>*/}
               </div>
               <div className="col-12 col-sm-3 column">
                 <h6 className="text-uppercase">Подпишись на обновления</h6>
-                <form>
+                <form method="POST" action="api/news">
                   <div className="form-group">
                     <input
-                      type="text" className="form-control" title="No spam, we promise!"
+                      type="text" className="form-control" name="email" title="No spam, we promise!"
                       placeholder="Введите ваш email"
                     />
                   </div>
                   <div className="form-group">
-                    <button className="btn btn-primary" data-toggle="modal" data-target="#alertModal" type="button">
-                      Подписаться
+                    <button
+                      className="btn btn-primary" type="submit"
+                      onClick={() => this.setState({ newsMessage: 'Подписка оформлена!' })}
+                    >
+                      {this.state.newsMessage}
                     </button>
                   </div>
                 </form>
@@ -1085,7 +922,10 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
               <div className="col-12 col-sm-3 text-right">
                 <h6 className="text-uppercase">Мы в социальных сетях</h6>
                 <ul className="list-inline">
-                  <li className="list-inline-item"><a rel="nofollow" href="" title="Facebook"><i
+                  <li className="list-inline-item"><a
+                    rel="nofollow" href="https://www.facebook.com/EdHunterra/"
+                    title="Facebook"
+                  ><i
                     className="icon-lg ion-social-facebook-outline"
                   ></i></a></li>
                 </ul>
@@ -1095,20 +935,6 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
             <span className="float-right text-muted small"><a>EdHunter 2017</a></span>
           </div>
         </footer>
-        <div id="alertModal" className="modal fade" tabIndex="-1" role="dialog" aria-hidden="true">
-          <div className="modal-dialog modal-sm">
-            <div className="modal-content">
-              <div className="modal-body text-center">
-                <h2 className="text-center">Спасибо!</h2>
-                <p className="text-center">Ваше мнение очень важно для нас</p>
-                <br />
-                <button className="btn btn-primary btn-lg" data-dismiss="modal" aria-hidden="true">ОК <i
-                  className="ion-android-close"
-                ></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     );
   }
